@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35431.28
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeControl", "EmployeeControl\EmployeeControl.csproj", "{6BA6B429-EF13-4582-894B-33D44A6BEB2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeControlWinForms", "EmployeeControlWinForms\EmployeeControlWinForms.csproj", "{5E139A02-1D48-4A50-931B-2A87D2869248}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6BA6B429-EF13-4582-894B-33D44A6BEB2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BA6B429-EF13-4582-894B-33D44A6BEB2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BA6B429-EF13-4582-894B-33D44A6BEB2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BA6B429-EF13-4582-894B-33D44A6BEB2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E139A02-1D48-4A50-931B-2A87D2869248}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E139A02-1D48-4A50-931B-2A87D2869248}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E139A02-1D48-4A50-931B-2A87D2869248}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E139A02-1D48-4A50-931B-2A87D2869248}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F4988B8B-BDCC-4A9F-A1DE-883D5515AA7A}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,24 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EmployeeControl"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="EmployeeControl.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,65,0,71"/>
+        <Menu>
+            <MenuItem Header="Словарь" Height="35">
+                <materialDesign:SplitButton/>
+            </MenuItem>
+            <MenuItem Header="Сотрудники" Height="35">
+                <materialDesign:SplitButton/>
+            </MenuItem>
+        </Menu>
+        <Button x:Name="AddButton" Content="Добавить" Margin="0,0,243,17" HorizontalAlignment="Right" Width="96" Height="32" VerticalAlignment="Bottom" Click="AddButton_Click" />
+        <Button Content="Изменить" Margin="0,0,134,17" HorizontalAlignment="Right" Width="96" Height="32" VerticalAlignment="Bottom" />
+        <Button Content="Удалить" Margin="0,0,28,17" Background="#FFD71C1C" HorizontalAlignment="Right" Width="96" Height="32" VerticalAlignment="Bottom"  />
+    </Grid>
+</Window>
