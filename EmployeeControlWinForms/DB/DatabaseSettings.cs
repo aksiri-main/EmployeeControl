@@ -18,10 +18,13 @@ namespace EmployeeControlWinForms.DB
                                                  " CONCAT(surname, ' ', name, ' ', lastName) AS [ФИО]," +
                                                  " dateOfBirthday AS [Дата рождения] FROM Reliatives";
 
-        internal static string countriesTable = "SELECT Id, name AS [Наименование] FROM Countries";
+        internal static string countriesTable = "SELECT Id, name AS [Страна] FROM Countries";
+
+        internal static string areasTable = "SELECT Area.Id, Id_Country, Countries.name AS [Страна], Area.name AS [Область] FROM Area" +
+                                            " JOIN Countries ON Area.Id_Country = Countries.Id";
 
         internal static string citiesTable = "SELECT Id, Countries.name AS [Страна]," +
-                                             " name AS [Наименование]" +
+                                             " name AS [Город]" +
                                              " FROM Cities" +
                                              " JOIN Countries ON Cities.Id_Country = Countries.Id";
     }

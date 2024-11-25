@@ -21,5 +21,10 @@ namespace EmployeeControlWinForms.AddForms
         {
             this.Close();
         }
+
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

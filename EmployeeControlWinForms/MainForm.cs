@@ -69,17 +69,9 @@ namespace EmployeeControlWinForms
                     break;
 
                 case "Области":
-                    {
-                        if (dataGridView1.SelectedRows.Count > 0)
-                        {
-                            DataGridViewRow selectedRow = (dataGridView1.SelectedRows[0]);
-                            
-                        }
-                        else
-                        {
-                            MessageBox.Show("Выберите запись для добавления", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                    }
+                    AddAreaForm addArea = new AddAreaForm();
+                    addArea.notify = notifyIcon1;
+                    addArea.ShowDialog();
                     break;
             }
         }
@@ -158,7 +150,7 @@ namespace EmployeeControlWinForms
                         SimpleAddAreaForm addArea = new SimpleAddAreaForm();
                         addArea.notify = notifyIcon1;
 
-                        addArea.id = Convert.ToInt32(selectedRow.Cells["id"].Value);
+                        addArea.id_country = Convert.ToInt32(selectedRow.Cells["id"].Value);
                         addArea.ShowDialog();
                         break;
                 }
@@ -171,8 +163,8 @@ namespace EmployeeControlWinForms
 
         private void областиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string[] columns = { "Id" };
-            MenuItemClick("Страны", DatabaseSettings.countriesTable,
+            string[] columns = { "Id", "Id_Country" };
+            MenuItemClick("Области", DatabaseSettings.areasTable,
                 columns
                 );
             AddButton2.Visible = true;

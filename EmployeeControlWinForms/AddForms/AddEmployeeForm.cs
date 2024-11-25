@@ -84,5 +84,10 @@ namespace EmployeeControlWinForms
                columns
                );
         }
+
+        private void groupBox1_Enter_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

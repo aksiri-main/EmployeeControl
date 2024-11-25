@@ -13,6 +13,7 @@ namespace EmployeeControlWinForms.AddForms
     public partial class SimpleAddAreaForm : Form
     {
         public int id;
+        internal int id_country;
         public NotifyIcon notify;
         public SimpleAddAreaForm()
         {
