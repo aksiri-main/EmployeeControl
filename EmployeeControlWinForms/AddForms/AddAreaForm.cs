@@ -14,9 +14,11 @@ namespace EmployeeControlWinForms.AddForms
     {
         public int id;
         public NotifyIcon notify;
+        Dictionary<String, int> countriesDictionary = new Dictionary<String, int>();
         public AddAreaForm()
         {
             InitializeComponent();
+            AddRecords.FillComboBox("SELECT name, Id FROM Countries", CountriesComboBox, countriesDictionary);
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -25,20 +27,21 @@ namespace EmployeeControlWinForms.AddForms
         }
 
         private void AddButton_Click(object sender, EventArgs e)
-        {
+        { 
+            countriesDictionary.TryGetValue(CountriesComboBox.Text, out int id_county);
             string uniquenessQuery;
-            string[] strings = { id.ToString(), NameTextBox.Text };
+            string[] strings = { id_county.ToString(), NameTextBox.Text };
             string query;
 
             if (AddButton.Text != "Изменить")
             {
-                query = "INSERT INTO [Areas] (Id, name) VALUES (@value1, @value2)";
-                uniquenessQuery = "SELECT COUNT(*) FROM Areas WHERE name = @value1";
+                query = "INSERT INTO [Area] (Id_Country, name) VALUES (@value1, @value2)";
+                uniquenessQuery = "SELECT COUNT(*) FROM Area WHERE (Id_Country = @value1 AND name = @value2)";
             }
             else
             {
-                query = "UPDATE Areas SET name=@value1, name=@value1 WHERE Id=@id";
-                uniquenessQuery = $"SELECT COUNT(*) FROM Areas WHERE name = @value1 AND id != '{id}'";
+                query = "UPDATE Area SET Id_Country=@value1, name=@value2 WHERE Id=@id";
+                uniquenessQuery = $"SELECT COUNT(*) FROM Are WHERE (Id_Country = @value1 AND name = @value2) AND id != '{id}'";
             }
             int result = AddRecords.UniquenessCheck(
                 uniquenessQuery,
