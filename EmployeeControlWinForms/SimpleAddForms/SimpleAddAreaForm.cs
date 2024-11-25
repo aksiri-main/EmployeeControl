@@ -10,15 +10,13 @@ using System.Windows.Forms;
 
 namespace EmployeeControlWinForms.AddForms
 {
-    public partial class AddAreaForm : Form
+    public partial class SimpleAddAreaForm : Form
     {
         public int id;
         public NotifyIcon notify;
-        Dictionary<String, int> countriesDictionary = new Dictionary<String, int>();
-        public AddAreaForm()
+        public SimpleAddAreaForm()
         {
             InitializeComponent();
-            AddRecords.FillComboBox("SELECT name, Id FROM Countries", CountriesComboBox, countriesDictionary);
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -27,10 +25,9 @@ namespace EmployeeControlWinForms.AddForms
         }
 
         private void AddButton_Click(object sender, EventArgs e)
-        { 
-            countriesDictionary.TryGetValue(CountriesComboBox.Text, out int id_county);
+        {
             string uniquenessQuery;
-            string[] strings = { id_county.ToString(), NameTextBox.Text };
+            string[] strings = { id.ToString(), NameTextBox.Text };
             string query;
 
             if (AddButton.Text != "Изменить")
@@ -68,6 +65,16 @@ namespace EmployeeControlWinForms.AddForms
 
                 this.Close();
             }
+        }
+
+        private void NameTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

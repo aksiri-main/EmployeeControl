@@ -21,7 +21,7 @@ namespace EmployeeControlWinForms
             InitializeComponent();
         }
 
-        private void LoadData(string query, string[] invisibleColums)
+        private void LoadData(string query, string[] invisibleColumns)
         {
             using (SqlConnection connection = new SqlConnection(DatabaseSettings.connectionString))
             {
@@ -31,7 +31,7 @@ namespace EmployeeControlWinForms
                 {
                     adapter.Fill(ds, "YourTable");
                     dataGridView1.DataSource = ds.Tables["YourTable"];
-                    foreach (string nameColumn in invisibleColums)
+                    foreach (string nameColumn in invisibleColumns)
                     {
                         dataGridView1.Columns[nameColumn].Visible = false;
                     }
@@ -104,6 +104,7 @@ namespace EmployeeControlWinForms
 
         private void сотрудникиToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            AddButton2.Visible = false;
             string[] columns = { "Id" };
             MenuItemClick("Сотрудники", DatabaseSettings.employeeTable,
                 columns
@@ -144,6 +145,38 @@ namespace EmployeeControlWinForms
             {
                 MessageBox.Show("Выберите запись для изменения", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void AddButton2_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = (dataGridView1.SelectedRows[0]);
+                switch (pageName)
+                {
+                    case "Страны":
+                        SimpleAddAreaForm addArea = new SimpleAddAreaForm();
+                        addArea.notify = notifyIcon1;
+
+                        addArea.id = Convert.ToInt32(selectedRow.Cells["id"].Value);
+                        addArea.ShowDialog();
+                        break;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите запись для изменения", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void областиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string[] columns = { "Id" };
+            MenuItemClick("Страны", DatabaseSettings.countriesTable,
+                columns
+                );
+            AddButton2.Visible = true;
+            AddButton2.Text = "Добавить улицу";
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EmployeeControlWinForms.AddForms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,17 +9,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace EmployeeControlWinForms.AddForms
+namespace EmployeeControlWinForms.SimpleAddForms
 {
-    public partial class AddAreaForm : Form
+    public partial class SimpleAddCityForm : Form
     {
         public int id;
         public NotifyIcon notify;
-        Dictionary<String, int> countriesDictionary = new Dictionary<String, int>();
-        public AddAreaForm()
+        public SimpleAddCityForm()
         {
             InitializeComponent();
-            AddRecords.FillComboBox("SELECT name, Id FROM Countries", CountriesComboBox, countriesDictionary);
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -27,21 +26,20 @@ namespace EmployeeControlWinForms.AddForms
         }
 
         private void AddButton_Click(object sender, EventArgs e)
-        { 
-            countriesDictionary.TryGetValue(CountriesComboBox.Text, out int id_county);
+        {
             string uniquenessQuery;
-            string[] strings = { id_county.ToString(), NameTextBox.Text };
+            string[] strings = { id.ToString(), NameTextBox.Text };
             string query;
 
             if (AddButton.Text != "Изменить")
             {
-                query = "INSERT INTO [Areas] (Id_Country, name) VALUES (@value1, @value2)";
-                uniquenessQuery = "SELECT COUNT(*) FROM Areas WHERE (Id_Country = @value1 AND name = @value2)";
+                query = "INSERT INTO [Cities] (Id, name) VALUES (@value1, @value2)";
+                uniquenessQuery = "SELECT COUNT(*) FROM Cities WHERE name = @value1";
             }
             else
             {
-                query = "UPDATE Areas SET Id_Country=@value1, name=@value2 WHERE Id=@id";
-                uniquenessQuery = $"SELECT COUNT(*) FROM Areas WHERE (Id_Country = @value1 AND name = @value2) AND id != '{id}'";
+                query = "UPDATE Cities SET name=@value1, name=@value1 WHERE Id=@id";
+                uniquenessQuery = $"SELECT COUNT(*) FROM Cities WHERE name = @value1 AND id != '{id}'";
             }
             int result = AddRecords.UniquenessCheck(
                 uniquenessQuery,
