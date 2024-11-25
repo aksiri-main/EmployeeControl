@@ -32,13 +32,13 @@ namespace EmployeeControlWinForms.AddForms
 
             if (AddButton.Text != "Изменить")
             {
-                query = "INSERT INTO [Areas] (Id_Country, name) VALUES (@value1, @value2)";
-                uniquenessQuery = "SELECT COUNT(*) FROM Areas WHERE (Id_Country = @value1 AND name = @value2)";
+                query = "INSERT INTO [Area] (Id_Country, name) VALUES (@value1, @value2)";
+                uniquenessQuery = "SELECT COUNT(*) FROM Area WHERE (Id_Country = @value1 AND name = @value2)";
             }
             else
             {
-                query = "UPDATE Areas SET Id_Country=@value1, name=@value2 WHERE Id=@id";
-                uniquenessQuery = $"SELECT COUNT(*) FROM Areas WHERE (Id_Country = @value1 AND name = @value2) AND id != '{id}'";
+                query = "UPDATE Area SET Id_Country=@value1, name=@value2 WHERE Id=@id";
+                uniquenessQuery = $"SELECT COUNT(*) FROM Area WHERE (Id_Country = @value1 AND name = @value2) AND id != '{id}'";
             }
             int result = AddRecords.UniquenessCheck(
                 uniquenessQuery,

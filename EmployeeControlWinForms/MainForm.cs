@@ -27,19 +27,19 @@ namespace EmployeeControlWinForms
             {
                 SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
                 DataSet ds = new DataSet();
-                try
-                {
+                //try
+                //{
                     adapter.Fill(ds, "YourTable");
                     dataGridView1.DataSource = ds.Tables["YourTable"];
                     foreach (string nameColumn in invisibleColumns)
                     {
                         dataGridView1.Columns[nameColumn].Visible = false;
                     }
-                }
-                catch
-                {
-                    MessageBox.Show("Ошибка подключения к базе данных", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                //}
+                //catch
+                //{
+                //    MessageBox.Show("Ошибка подключения к базе данных", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //}
             }
         }
 
