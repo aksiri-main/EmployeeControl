@@ -119,6 +119,6 @@
         private System.Windows.Forms.Button CancelButton;
         internal System.Windows.Forms.Button AddButton;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox CountriesComboBox;
+        internal System.Windows.Forms.ComboBox CountriesComboBox;
     }
 }

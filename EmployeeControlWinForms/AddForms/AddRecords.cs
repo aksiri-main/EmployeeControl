@@ -87,6 +87,28 @@ namespace EmployeeControlWinForms.AddForms
             notifyIcon.ShowBalloonTip(showBalloonTime);
         }
 
+        internal static void FillDictionary(string query, Dictionary<string, int> keyValues)
+        {
+            using (SqlConnection connection = new SqlConnection(DatabaseSettings.connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    string value = reader.GetString(0);
+                    int id = reader.GetInt32(1);
+
+                    keyValues.Add(value, id);
+                }
+
+                reader.Close();
+
+            }
+        }
+
+
         //Заполнение ComboBox
         internal static void FillComboBox(string query, ComboBox comboBox, Dictionary<string, int> keyValues)
         {
@@ -163,6 +185,20 @@ namespace EmployeeControlWinForms.AddForms
             }
 
             NotifyIconSettings(notify, ToolTipIcon.Info, "Успешно!", balloonText, 3);
+        }
+
+        internal static void AddRecordsMethod(string query, Dictionary<string, string> keyValues, int id, SqlConnection connection, SqlTransaction transaction)
+        {
+            SqlCommand command = new SqlCommand(query, connection, transaction);
+
+            // Задание параметров
+            command.Parameters.AddWithValue("@id", id);
+            foreach (var kVal in keyValues)
+            {
+                command.Parameters.AddWithValue(kVal.Key, kVal.Value);
+            }
+
+            command.ExecuteNonQuery();
         }
 
         internal static void DeleteDivisionsInUsersRoles(int id, string deleteCommandText)

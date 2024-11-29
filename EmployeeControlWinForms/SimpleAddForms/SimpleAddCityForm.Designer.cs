@@ -83,7 +83,9 @@
             this.Controls.Add(this.NameTextBox);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.AddButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "SimpleAddCityForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Добавление города";
             this.ResumeLayout(false);
             this.PerformLayout();

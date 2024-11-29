@@ -28,7 +28,7 @@ namespace EmployeeControlWinForms.AddForms
         private void AddButton_Click(object sender, EventArgs e)
         {
             string uniquenessQuery;
-            string[] strings = { id.ToString(), NameTextBox.Text };
+            string[] strings = { id_country.ToString(), NameTextBox.Text };
             string query;
 
             if (AddButton.Text != "Изменить")
@@ -54,7 +54,7 @@ namespace EmployeeControlWinForms.AddForms
                     return;
                 }
 
-                string[] values = { NameTextBox.Text };
+                string[] values = {id_country.ToString(), NameTextBox.Text};
 
                 AddRecords.AddRecordsMethod(
                     query,

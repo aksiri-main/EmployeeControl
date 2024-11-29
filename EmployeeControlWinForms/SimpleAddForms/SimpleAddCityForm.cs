@@ -14,6 +14,7 @@ namespace EmployeeControlWinForms.SimpleAddForms
     public partial class SimpleAddCityForm : Form
     {
         public int id;
+        public int id_area;
         public NotifyIcon notify;
         public SimpleAddCityForm()
         {
@@ -28,18 +29,18 @@ namespace EmployeeControlWinForms.SimpleAddForms
         private void AddButton_Click(object sender, EventArgs e)
         {
             string uniquenessQuery;
-            string[] strings = { id.ToString(), NameTextBox.Text };
+            string[] strings = {id_area.ToString(), NameTextBox.Text };
             string query;
 
             if (AddButton.Text != "Изменить")
             {
-                query = "INSERT INTO [Cities] (Id, name) VALUES (@value1, @value2)";
-                uniquenessQuery = "SELECT COUNT(*) FROM Cities WHERE name = @value1";
+                query = "INSERT INTO [Cities] (Id_Areas, name) VALUES (@value1, @value2)";
+                uniquenessQuery = "SELECT COUNT(*) FROM Cities WHERE (Id_Areas = @value1 AND name = @value2)";
             }
             else
             {
-                query = "UPDATE Cities SET name=@value1, name=@value1 WHERE Id=@id";
-                uniquenessQuery = $"SELECT COUNT(*) FROM Cities WHERE name = @value1 AND id != '{id}'";
+                query = "UPDATE Cities SET Id_Areas=@value1, name=@value2 WHERE Id=@id";
+                uniquenessQuery = $"SELECT COUNT(*) FROM Cities WHERE (Id_Areas = @value1 AND name = @value2) AND id != '{id}'";
             }
             int result = AddRecords.UniquenessCheck(
                 uniquenessQuery,
@@ -54,7 +55,7 @@ namespace EmployeeControlWinForms.SimpleAddForms
                     return;
                 }
 
-                string[] values = { NameTextBox.Text };
+                string[] values = {id_area.ToString(), NameTextBox.Text };
 
                 AddRecords.AddRecordsMethod(
                     query,

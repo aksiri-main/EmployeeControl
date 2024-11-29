@@ -23,9 +23,38 @@ namespace EmployeeControlWinForms.DB
         internal static string areasTable = "SELECT Area.Id, Id_Country, Countries.name AS [Страна], Area.name AS [Область] FROM Area" +
                                             " JOIN Countries ON Area.Id_Country = Countries.Id";
 
-        internal static string citiesTable = "SELECT Id, Countries.name AS [Страна]," +
-                                             " name AS [Город]" +
+        internal static string citiesTable = "SELECT Cities.Id, Id_Areas, Countries.name AS [Страна]," +
+                                             " Area.name AS [Область]," +
+                                             " Cities.name AS [Город]" +
                                              " FROM Cities" +
-                                             " JOIN Countries ON Cities.Id_Country = Countries.Id";
+                                             " JOIN Area ON Cities.Id_Areas = Area.Id" +
+                                             " JOIN Countries ON Area.Id_Country = Countries.Id";
+
+        internal static string streetsTable = "SELECT Streets.Id, Id_City, Countries.name AS [Страна]," +
+                                             " Area.name AS [Область]," +
+                                             " Cities.name AS [Город]," +
+                                             " Streets.name AS [Улица]" +
+                                             " FROM Streets" +
+                                             " JOIN Cities ON Streets.Id_City = Cities.Id" +
+                                             " JOIN Area ON Cities.Id_Areas = Area.Id" +
+                                             " JOIN Countries ON Area.Id_Country = Countries.Id";
+
+        internal static string rovdTable = "SELECT ROVD.Id, Id_City, Countries.name AS [Страна]," +
+                                             " Area.name AS [Область]," +
+                                             " Cities.name AS [Город]," +
+                                             " ROVD.name AS [РОВД]" +
+                                             " FROM ROVD" +
+                                             " JOIN Cities ON ROVD.Id_City = Cities.Id" +
+                                             " JOIN Area ON Cities.Id_Areas = Area.Id" +
+                                             " JOIN Countries ON Area.Id_Country = Countries.Id";
+
+        internal static string commissariatsTable = "SELECT Comissariat.Id, Id_City, Countries.name AS [Страна]," +
+                                             " Area.name AS [Область]," +
+                                             " Cities.name AS [Город]," +
+                                             " Comissariat.name AS [Комиссариат]" +
+                                             " FROM Comissariat" +
+                                             " JOIN Cities ON Comissariat.Id_City = Cities.Id" +
+                                             " JOIN Area ON Cities.Id_Areas = Area.Id" +
+                                             " JOIN Countries ON Area.Id_Country = Countries.Id";
     }
 }

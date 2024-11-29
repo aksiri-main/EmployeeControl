@@ -61,6 +61,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddForms\AddCityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddForms\AddCityForm.Designer.cs">
+      <DependentUpon>AddCityForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddForms\AddCommissariatForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddForms\AddCommissariatForm.Designer.cs">
+      <DependentUpon>AddCommissariatForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddForms\AddEmployeeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,11 +85,41 @@
     <Compile Include="AddForms\AddAreaForm.Designer.cs">
       <DependentUpon>AddAreaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddForms\AddROVDForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddForms\AddROVDForm.Designer.cs">
+      <DependentUpon>AddROVDForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddForms\AddStreetForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AddForms\AddStreetForm.Designer.cs">
       <DependentUpon>AddStreetForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CorrectionCheck\CityCorrectionCheckForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CorrectionCheck\CityCorrectionCheckForm.Designer.cs">
+      <DependentUpon>CityCorrectionCheckForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CorrectionCheck\ComissariatCorrectionCheckForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CorrectionCheck\ComissariatCorrectionCheckForm.Designer.cs">
+      <DependentUpon>ComissariatCorrectionCheckForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CorrectionCheck\ROVDCorrectionCheckForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CorrectionCheck\ROVDCorrectionCheckForm.Designer.cs">
+      <DependentUpon>ROVDCorrectionCheckForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CorrectionCheck\StreetCorrectionCheckFormForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CorrectionCheck\StreetCorrectionCheckFormForm.Designer.cs">
+      <DependentUpon>StreetCorrectionCheckFormForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SimpleAddForms\SimpleAddAreaForm.cs">
       <SubType>Form</SubType>
@@ -107,14 +149,41 @@
     <Compile Include="SimpleAddForms\SimpleAddCityForm.Designer.cs">
       <DependentUpon>SimpleAddCityForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SimpleAddForms\SimpleAddStreetForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SimpleAddForms\SimpleAddStreetForm.Designer.cs">
+      <DependentUpon>SimpleAddStreetForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AddForms\AddCityForm.resx">
+      <DependentUpon>AddCityForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddForms\AddCommissariatForm.resx">
+      <DependentUpon>AddCommissariatForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddForms\AddEmployeeForm.resx">
       <DependentUpon>AddEmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddForms\AddAreaForm.resx">
       <DependentUpon>AddAreaForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AddForms\AddROVDForm.resx">
+      <DependentUpon>AddROVDForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddForms\AddStreetForm.resx">
       <DependentUpon>AddStreetForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CorrectionCheck\CityCorrectionCheckForm.resx">
+      <DependentUpon>CityCorrectionCheckForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CorrectionCheck\ComissariatCorrectionCheckForm.resx">
+      <DependentUpon>ComissariatCorrectionCheckForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CorrectionCheck\ROVDCorrectionCheckForm.resx">
+      <DependentUpon>ROVDCorrectionCheckForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CorrectionCheck\StreetCorrectionCheckFormForm.resx">
+      <DependentUpon>StreetCorrectionCheckFormForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SimpleAddForms\SimpleAddAreaForm.resx">
       <DependentUpon>SimpleAddAreaForm.cs</DependentUpon>
@@ -137,6 +206,9 @@
     <EmbeddedResource Include="SimpleAddForms\SimpleAddCityForm.resx">
       <DependentUpon>SimpleAddCityForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SimpleAddForms\SimpleAddStreetForm.resx">
+      <DependentUpon>SimpleAddStreetForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -155,8 +227,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="DB\Database2_log.ldf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>Database2.mdf</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>

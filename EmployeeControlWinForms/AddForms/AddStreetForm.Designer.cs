@@ -47,6 +47,7 @@
             this.CountriesComboBox.Name = "CountriesComboBox";
             this.CountriesComboBox.Size = new System.Drawing.Size(198, 21);
             this.CountriesComboBox.TabIndex = 20;
+            this.CountriesComboBox.SelectedIndexChanged += new System.EventHandler(this.CountriesComboBox_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -57,6 +58,7 @@
             this.label2.Size = new System.Drawing.Size(50, 13);
             this.label2.TabIndex = 19;
             this.label2.Text = "Область";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
@@ -67,6 +69,7 @@
             this.label1.Size = new System.Drawing.Size(83, 13);
             this.label1.TabIndex = 18;
             this.label1.Text = "Наименование";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // NameTextBox
             // 
@@ -75,6 +78,7 @@
             this.NameTextBox.Name = "NameTextBox";
             this.NameTextBox.Size = new System.Drawing.Size(198, 20);
             this.NameTextBox.TabIndex = 17;
+            this.NameTextBox.TextChanged += new System.EventHandler(this.NameTextBox_TextChanged);
             // 
             // CancelButton
             // 
@@ -105,6 +109,7 @@
             this.AreasComboBox.Name = "AreasComboBox";
             this.AreasComboBox.Size = new System.Drawing.Size(198, 21);
             this.AreasComboBox.TabIndex = 22;
+            this.AreasComboBox.SelectedIndexChanged += new System.EventHandler(this.AreasComboBox_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -115,6 +120,7 @@
             this.label3.Size = new System.Drawing.Size(43, 13);
             this.label3.TabIndex = 21;
             this.label3.Text = "Страна";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // CitiesComboBox
             // 
@@ -123,6 +129,7 @@
             this.CitiesComboBox.Name = "CitiesComboBox";
             this.CitiesComboBox.Size = new System.Drawing.Size(198, 21);
             this.CitiesComboBox.TabIndex = 24;
+            this.CitiesComboBox.SelectedIndexChanged += new System.EventHandler(this.CitiesComboBox_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -133,6 +140,7 @@
             this.label4.Size = new System.Drawing.Size(37, 13);
             this.label4.TabIndex = 23;
             this.label4.Text = "Город";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // AddStreetForm
             // 
@@ -159,16 +167,15 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ComboBox CountriesComboBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         internal System.Windows.Forms.TextBox NameTextBox;
         private System.Windows.Forms.Button CancelButton;
         internal System.Windows.Forms.Button AddButton;
-        private System.Windows.Forms.ComboBox AreasComboBox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox CitiesComboBox;
         private System.Windows.Forms.Label label4;
+        internal System.Windows.Forms.ComboBox CountriesComboBox;
+        internal System.Windows.Forms.ComboBox AreasComboBox;
+        internal System.Windows.Forms.ComboBox CitiesComboBox;
     }
 }
