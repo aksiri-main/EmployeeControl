@@ -52,6 +52,7 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.AddButton2 = new System.Windows.Forms.Button();
+            this.SearchTextBox = new System.Windows.Forms.ToolStripTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -91,6 +92,7 @@
             this.DeleteButton.TabIndex = 2;
             this.DeleteButton.Text = "Удалить";
             this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // dataGridView1
             // 
@@ -117,11 +119,12 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.словарьToolStripMenuItem,
             this.сотрудникиToolStripMenuItem,
-            this.отпускаToolStripMenuItem});
+            this.отпускаToolStripMenuItem,
+            this.SearchTextBox});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(722, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(722, 27);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -131,7 +134,7 @@
             this.местоЖительстваToolStripMenuItem,
             this.сотрудникиToolStripMenuItem1});
             this.словарьToolStripMenuItem.Name = "словарьToolStripMenuItem";
-            this.словарьToolStripMenuItem.Size = new System.Drawing.Size(72, 21);
+            this.словарьToolStripMenuItem.Size = new System.Drawing.Size(72, 23);
             this.словарьToolStripMenuItem.Text = "Словарь";
             // 
             // местоЖительстваToolStripMenuItem
@@ -206,14 +209,14 @@
             // сотрудникиToolStripMenuItem
             // 
             this.сотрудникиToolStripMenuItem.Name = "сотрудникиToolStripMenuItem";
-            this.сотрудникиToolStripMenuItem.Size = new System.Drawing.Size(89, 21);
+            this.сотрудникиToolStripMenuItem.Size = new System.Drawing.Size(89, 23);
             this.сотрудникиToolStripMenuItem.Text = "Сотрудники";
             this.сотрудникиToolStripMenuItem.Click += new System.EventHandler(this.сотрудникиToolStripMenuItem_Click);
             // 
             // отпускаToolStripMenuItem
             // 
             this.отпускаToolStripMenuItem.Name = "отпускаToolStripMenuItem";
-            this.отпускаToolStripMenuItem.Size = new System.Drawing.Size(67, 21);
+            this.отпускаToolStripMenuItem.Size = new System.Drawing.Size(67, 23);
             this.отпускаToolStripMenuItem.Text = "Отпуска";
             // 
             // button4
@@ -276,6 +279,20 @@
             this.AddButton2.Visible = false;
             this.AddButton2.Click += new System.EventHandler(this.AddButton2_Click);
             // 
+            // SearchTextBox
+            // 
+            this.SearchTextBox.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.SearchTextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.SearchTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SearchTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.SearchTextBox.Name = "SearchTextBox";
+            this.SearchTextBox.Size = new System.Drawing.Size(150, 23);
+            this.SearchTextBox.Text = "Поиск:";
+            this.SearchTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SearchTextBox_KeyDown);
+            this.SearchTextBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SearchTextBox_MouseDown);
+            this.SearchTextBox.MouseLeave += new System.EventHandler(this.SearchTextBox_MouseLeave);
+            this.SearchTextBox.TextChanged += new System.EventHandler(this.SearchTextBox_TextChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -328,6 +345,7 @@
         private System.Windows.Forms.ToolStripMenuItem областиToolStripMenuItem;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.Button AddButton2;
+        private System.Windows.Forms.ToolStripTextBox SearchTextBox;
     }
 }
 

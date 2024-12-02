@@ -12,10 +12,10 @@ namespace EmployeeControlWinForms.DB
                                   "AttachDbFileName=|DataDirectory|\\DB\\Database2.mdf; " +
                                   "Integrated Security=True;";
 
-        internal static string employeeTable = "SELECT Id, surname AS [Фамилия], name AS [Имя], lastName AS [Отчество] FROM Employees";
+        internal static string employeeTable = "SELECT Id, surname AS [Фамилия], name AS [Имя], lastName AS [Отчество], dateOfBirthday AS [Дата рождения], sex AS [Пол] FROM Employees";
 
         internal static string reliativesTable = "SELECT Id, kinship AS [Степень родства]," +
-                                                 " CONCAT(surname, ' ', name, ' ', lastName) AS [ФИО]," +
+                                                 " surname AS 'Фамилия', name AS 'Имя', lastName AS 'Отчество'," +
                                                  " dateOfBirthday AS [Дата рождения] FROM Reliatives";
 
         internal static string countriesTable = "SELECT Id, name AS [Страна] FROM Countries";

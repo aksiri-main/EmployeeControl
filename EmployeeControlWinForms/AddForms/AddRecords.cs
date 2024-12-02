@@ -12,6 +12,25 @@ namespace EmployeeControlWinForms.AddForms
 {
     internal static class AddRecords
     {
+        internal static int CorrectionCheck(string query, Dictionary<string, string> keyValues)
+        {
+            SqlConnection connection = new SqlConnection(DatabaseSettings.connectionString);
+            connection.Open();
+            SqlCommand command = new SqlCommand(query, connection);
+            // Задание параметров
+            foreach (var kVal in keyValues)
+            {
+                command.Parameters.AddWithValue(kVal.Key, kVal.Value);
+            }
+            int count = (int)command.ExecuteScalar();
+
+            if (count > 0)
+                return count;
+            else 
+                return 0;
+        }
+
+
         //Проверка на уникальность записи
         internal static int UniquenessCheck(string query, Dictionary<string, string> keyValues)
         {
@@ -132,6 +151,42 @@ namespace EmployeeControlWinForms.AddForms
             }
         }
 
+        internal static string FillText(string query)
+        {
+            using (SqlConnection connection = new SqlConnection(DatabaseSettings.connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    return reader.GetString(0);
+                }
+
+                reader.Close();
+                
+            }
+            return null;
+        }
+        internal static bool FillTextBool(string query)
+        {
+            using (SqlConnection connection = new SqlConnection(DatabaseSettings.connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    return reader.GetBoolean(0);
+                }
+
+                reader.Close();
+
+            }
+            return false;
+        }
         internal static void FillComboBox(string query, ComboBox comboBox, Dictionary<string, int> keyValues, ComboBox comboBox2, Dictionary<string, int> keyValues2)
         {
             using (SqlConnection connection = new SqlConnection(DatabaseSettings.connectionString))
@@ -187,6 +242,25 @@ namespace EmployeeControlWinForms.AddForms
             NotifyIconSettings(notify, ToolTipIcon.Info, "Успешно!", balloonText, 3);
         }
 
+        internal static void AddRecordsMethod(string query, Dictionary<string, string> keyValues, int id)
+        {
+            SqlConnection connection = new SqlConnection(DatabaseSettings.connectionString);
+            connection.Open();
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            // Задание параметров
+            command.Parameters.AddWithValue("@id", id);
+            foreach (var kVal in keyValues)
+            {
+                command.Parameters.AddWithValue(kVal.Key, kVal.Value);
+            }
+
+            command.ExecuteNonQuery();
+
+            connection.Close();
+        }
+
         internal static void AddRecordsMethod(string query, Dictionary<string, string> keyValues, int id, SqlConnection connection, SqlTransaction transaction)
         {
             SqlCommand command = new SqlCommand(query, connection, transaction);
@@ -217,5 +291,33 @@ namespace EmployeeControlWinForms.AddForms
                 }
             }
         }
+        internal static void DeletingRecordsFromTheDataBase(int id, string deleteCommandText)
+        {
+            // Создаем подключение и команду для удаления
+            using (SqlConnection connection = new SqlConnection(DatabaseSettings.connectionString))
+            {
+                using (SqlCommand deleteCommand = new SqlCommand(deleteCommandText, connection))
+                {
+                    // Добавляем параметр @KeyValue к команде удаления
+                    deleteCommand.Parameters.AddWithValue("@KeyValue", id);
+
+                    // Открываем соединение и выполняем команду удаления
+                    connection.Open();
+                    int rowsAffected = deleteCommand.ExecuteNonQuery();
+                }
+            }
+        }
+        //OVERLOAD
+        internal static void DeletingRecordsFromTheDataBase(int id, string deleteCommandText, SqlConnection connection, SqlTransaction transaction)
+        {
+            // Создаем подключение и команду для удаления
+            using (SqlCommand deleteCommand = new SqlCommand(deleteCommandText, connection, transaction))
+            {
+                // Добавляем параметр @KeyValue к команде удаления
+                deleteCommand.Parameters.AddWithValue("@KeyValue", id);
+                int rowsAffected = deleteCommand.ExecuteNonQuery();
+            }
+        }
     }
 }
+

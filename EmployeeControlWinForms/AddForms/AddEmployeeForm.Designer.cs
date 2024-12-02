@@ -35,7 +35,6 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label22 = new System.Windows.Forms.Label();
-            this.PhoneNumberTextBox1 = new System.Windows.Forms.TextBox();
             this.IndexTextBox1 = new System.Windows.Forms.TextBox();
             this.ApartamentTextBox1 = new System.Windows.Forms.TextBox();
             this.HouseTextBox1 = new System.Windows.Forms.TextBox();
@@ -50,7 +49,6 @@
             this.label15 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label8 = new System.Windows.Forms.Label();
-            this.PhoneNumberTextBox2 = new System.Windows.Forms.TextBox();
             this.IndexTextBox2 = new System.Windows.Forms.TextBox();
             this.ApartamentTextBox2 = new System.Windows.Forms.TextBox();
             this.HouseTextBox2 = new System.Windows.Forms.TextBox();
@@ -108,6 +106,10 @@
             this.label24 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.PhoneNumberTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.PhoneNumberTextBox2 = new System.Windows.Forms.MaskedTextBox();
+            this.IdentityNumberTextBox = new System.Windows.Forms.TextBox();
+            this.label33 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -209,8 +211,8 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.label22);
             this.tabPage1.Controls.Add(this.PhoneNumberTextBox1);
+            this.tabPage1.Controls.Add(this.label22);
             this.tabPage1.Controls.Add(this.IndexTextBox1);
             this.tabPage1.Controls.Add(this.ApartamentTextBox1);
             this.tabPage1.Controls.Add(this.HouseTextBox1);
@@ -234,8 +236,6 @@
             // 
             // label22
             // 
-            this.label22.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.label22.AutoSize = true;
             this.label22.Location = new System.Drawing.Point(23, 136);
             this.label22.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -244,31 +244,19 @@
             this.label22.TabIndex = 34;
             this.label22.Text = "Номер телефона";
             // 
-            // PhoneNumberTextBox1
-            // 
-            this.PhoneNumberTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PhoneNumberTextBox1.Location = new System.Drawing.Point(114, 133);
-            this.PhoneNumberTextBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.PhoneNumberTextBox1.Name = "PhoneNumberTextBox1";
-            this.PhoneNumberTextBox1.Size = new System.Drawing.Size(189, 20);
-            this.PhoneNumberTextBox1.TabIndex = 33;
-            // 
             // IndexTextBox1
             // 
-            this.IndexTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.IndexTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.IndexTextBox1.Location = new System.Drawing.Point(60, 15);
             this.IndexTextBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.IndexTextBox1.MaxLength = 10;
             this.IndexTextBox1.Name = "IndexTextBox1";
             this.IndexTextBox1.Size = new System.Drawing.Size(243, 20);
             this.IndexTextBox1.TabIndex = 31;
             // 
             // ApartamentTextBox1
             // 
-            this.ApartamentTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.ApartamentTextBox1.Location = new System.Drawing.Point(60, 110);
             this.ApartamentTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.ApartamentTextBox1.Name = "ApartamentTextBox1";
@@ -277,8 +265,7 @@
             // 
             // HouseTextBox1
             // 
-            this.HouseTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.HouseTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.HouseTextBox1.Location = new System.Drawing.Point(256, 87);
             this.HouseTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.HouseTextBox1.Name = "HouseTextBox1";
@@ -287,7 +274,7 @@
             // 
             // CityTextBox1
             // 
-            this.CityTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.CityTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CityTextBox1.Location = new System.Drawing.Point(60, 62);
             this.CityTextBox1.Margin = new System.Windows.Forms.Padding(2);
@@ -298,7 +285,7 @@
             // 
             // StreetTextBox1
             // 
-            this.StreetTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.StreetTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.StreetTextBox1.Location = new System.Drawing.Point(60, 87);
             this.StreetTextBox1.Margin = new System.Windows.Forms.Padding(2);
@@ -309,8 +296,6 @@
             // 
             // label20
             // 
-            this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.label20.AutoSize = true;
             this.label20.Location = new System.Drawing.Point(16, 18);
             this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -321,8 +306,7 @@
             // 
             // label13
             // 
-            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(227, 89);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -333,7 +317,7 @@
             // 
             // CounrtyComboBox1
             // 
-            this.CounrtyComboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.CounrtyComboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CounrtyComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CounrtyComboBox1.FormattingEnabled = true;
@@ -345,8 +329,6 @@
             // 
             // label17
             // 
-            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.label17.AutoSize = true;
             this.label17.Location = new System.Drawing.Point(20, 40);
             this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -357,8 +339,6 @@
             // 
             // label14
             // 
-            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(44, 112);
             this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -369,8 +349,6 @@
             // 
             // label16
             // 
-            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(26, 62);
             this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -381,8 +359,6 @@
             // 
             // label15
             // 
-            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(44, 89);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -393,8 +369,8 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.label8);
             this.tabPage2.Controls.Add(this.PhoneNumberTextBox2);
+            this.tabPage2.Controls.Add(this.label8);
             this.tabPage2.Controls.Add(this.IndexTextBox2);
             this.tabPage2.Controls.Add(this.ApartamentTextBox2);
             this.tabPage2.Controls.Add(this.HouseTextBox2);
@@ -418,8 +394,6 @@
             // 
             // label8
             // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(23, 136);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -428,18 +402,9 @@
             this.label8.TabIndex = 48;
             this.label8.Text = "Номер телефона";
             // 
-            // PhoneNumberTextBox2
-            // 
-            this.PhoneNumberTextBox2.Location = new System.Drawing.Point(119, 133);
-            this.PhoneNumberTextBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.PhoneNumberTextBox2.Name = "PhoneNumberTextBox2";
-            this.PhoneNumberTextBox2.Size = new System.Drawing.Size(194, 20);
-            this.PhoneNumberTextBox2.TabIndex = 47;
-            // 
             // IndexTextBox2
             // 
-            this.IndexTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.IndexTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.IndexTextBox2.Location = new System.Drawing.Point(65, 15);
             this.IndexTextBox2.Margin = new System.Windows.Forms.Padding(2);
@@ -457,8 +422,7 @@
             // 
             // HouseTextBox2
             // 
-            this.HouseTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.HouseTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.HouseTextBox2.Location = new System.Drawing.Point(263, 87);
             this.HouseTextBox2.Margin = new System.Windows.Forms.Padding(2);
             this.HouseTextBox2.Name = "HouseTextBox2";
@@ -467,8 +431,7 @@
             // 
             // CityTextBox2
             // 
-            this.CityTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.CityTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CityTextBox2.Location = new System.Drawing.Point(65, 62);
             this.CityTextBox2.Margin = new System.Windows.Forms.Padding(2);
@@ -479,8 +442,7 @@
             // 
             // StreetTextBox2
             // 
-            this.StreetTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.StreetTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.StreetTextBox2.Location = new System.Drawing.Point(65, 87);
             this.StreetTextBox2.Margin = new System.Windows.Forms.Padding(2);
@@ -491,8 +453,6 @@
             // 
             // label9
             // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(20, 15);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -503,8 +463,7 @@
             // 
             // label10
             // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(234, 89);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -515,8 +474,7 @@
             // 
             // CounrtyComboBox2
             // 
-            this.CounrtyComboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.CounrtyComboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CounrtyComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CounrtyComboBox2.FormattingEnabled = true;
@@ -528,8 +486,6 @@
             // 
             // label11
             // 
-            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(20, 40);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -540,8 +496,6 @@
             // 
             // label12
             // 
-            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(44, 112);
             this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -552,8 +506,6 @@
             // 
             // label21
             // 
-            this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.label21.AutoSize = true;
             this.label21.Location = new System.Drawing.Point(26, 62);
             this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -564,8 +516,6 @@
             // 
             // label32
             // 
-            this.label32.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.label32.AutoSize = true;
             this.label32.Location = new System.Drawing.Point(44, 89);
             this.label32.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -579,6 +529,8 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.IdentityNumberTextBox);
+            this.groupBox2.Controls.Add(this.label33);
             this.groupBox2.Controls.Add(this.splitContainer2);
             this.groupBox2.Controls.Add(this.ROVDTextBox);
             this.groupBox2.Controls.Add(this.label19);
@@ -597,8 +549,7 @@
             // 
             // splitContainer2
             // 
-            this.splitContainer2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.splitContainer2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer2.Location = new System.Drawing.Point(4, 48);
             this.splitContainer2.Name = "splitContainer2";
@@ -646,7 +597,7 @@
             this.ToDateTimePicker.Location = new System.Drawing.Point(24, 2);
             this.ToDateTimePicker.Margin = new System.Windows.Forms.Padding(2);
             this.ToDateTimePicker.Name = "ToDateTimePicker";
-            this.ToDateTimePicker.Size = new System.Drawing.Size(119, 20);
+            this.ToDateTimePicker.Size = new System.Drawing.Size(124, 20);
             this.ToDateTimePicker.TabIndex = 8;
             // 
             // label7
@@ -663,19 +614,20 @@
             // 
             // ROVDTextBox
             // 
-            this.ROVDTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ROVDTextBox.Location = new System.Drawing.Point(45, 79);
+            this.ROVDTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ROVDTextBox.Location = new System.Drawing.Point(43, 102);
             this.ROVDTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.ROVDTextBox.MaxLength = 50;
             this.ROVDTextBox.Name = "ROVDTextBox";
-            this.ROVDTextBox.Size = new System.Drawing.Size(258, 20);
+            this.ROVDTextBox.Size = new System.Drawing.Size(269, 20);
             this.ROVDTextBox.TabIndex = 23;
             this.ROVDTextBox.Leave += new System.EventHandler(this.ROVDTextBox_Leave);
             // 
             // label19
             // 
-            this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(8, 81);
+            this.label19.Location = new System.Drawing.Point(6, 104);
             this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(40, 13);
@@ -707,6 +659,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NumberTextBox.Location = new System.Drawing.Point(123, 23);
             this.NumberTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.NumberTextBox.MaxLength = 30;
             this.NumberTextBox.Name = "NumberTextBox";
             this.NumberTextBox.Size = new System.Drawing.Size(189, 20);
             this.NumberTextBox.TabIndex = 8;
@@ -763,6 +716,7 @@
             this.ManRadioButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ManRadioButton.AutoSize = true;
+            this.ManRadioButton.Checked = true;
             this.ManRadioButton.Location = new System.Drawing.Point(231, 86);
             this.ManRadioButton.Margin = new System.Windows.Forms.Padding(2);
             this.ManRadioButton.Name = "ManRadioButton";
@@ -816,6 +770,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LastNameTextBox.Location = new System.Drawing.Point(58, 60);
             this.LastNameTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.LastNameTextBox.MaxLength = 50;
             this.LastNameTextBox.Name = "LastNameTextBox";
             this.LastNameTextBox.Size = new System.Drawing.Size(245, 20);
             this.LastNameTextBox.TabIndex = 5;
@@ -827,6 +782,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NameTextBox.Location = new System.Drawing.Point(58, 37);
             this.NameTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.NameTextBox.MaxLength = 50;
             this.NameTextBox.Name = "NameTextBox";
             this.NameTextBox.Size = new System.Drawing.Size(245, 20);
             this.NameTextBox.TabIndex = 4;
@@ -838,6 +794,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SurnameTextBox.Location = new System.Drawing.Point(58, 15);
             this.SurnameTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.SurnameTextBox.MaxLength = 50;
             this.SurnameTextBox.Name = "SurnameTextBox";
             this.SurnameTextBox.Size = new System.Drawing.Size(245, 20);
             this.SurnameTextBox.TabIndex = 3;
@@ -953,7 +910,6 @@
             this.SpecialRadioButton.Name = "SpecialRadioButton";
             this.SpecialRadioButton.Size = new System.Drawing.Size(94, 17);
             this.SpecialRadioButton.TabIndex = 42;
-            this.SpecialRadioButton.TabStop = true;
             this.SpecialRadioButton.Text = "Специальном";
             this.SpecialRadioButton.UseVisualStyleBackColor = true;
             // 
@@ -962,6 +918,7 @@
             this.GeneralRadioButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GeneralRadioButton.AutoSize = true;
+            this.GeneralRadioButton.Checked = true;
             this.GeneralRadioButton.Location = new System.Drawing.Point(47, 196);
             this.GeneralRadioButton.Margin = new System.Windows.Forms.Padding(2);
             this.GeneralRadioButton.Name = "GeneralRadioButton";
@@ -1145,6 +1102,47 @@
             this.dataGridView1.Size = new System.Drawing.Size(304, 119);
             this.dataGridView1.TabIndex = 0;
             // 
+            // PhoneNumberTextBox1
+            // 
+            this.PhoneNumberTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PhoneNumberTextBox1.Location = new System.Drawing.Point(114, 133);
+            this.PhoneNumberTextBox1.Mask = "(99) 000-0000";
+            this.PhoneNumberTextBox1.Name = "PhoneNumberTextBox1";
+            this.PhoneNumberTextBox1.Size = new System.Drawing.Size(189, 20);
+            this.PhoneNumberTextBox1.TabIndex = 35;
+            // 
+            // PhoneNumberTextBox2
+            // 
+            this.PhoneNumberTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PhoneNumberTextBox2.Location = new System.Drawing.Point(119, 134);
+            this.PhoneNumberTextBox2.Mask = "(99) 000-0000";
+            this.PhoneNumberTextBox2.Name = "PhoneNumberTextBox2";
+            this.PhoneNumberTextBox2.Size = new System.Drawing.Size(189, 20);
+            this.PhoneNumberTextBox2.TabIndex = 49;
+            // 
+            // IdentityNumberTextBox
+            // 
+            this.IdentityNumberTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.IdentityNumberTextBox.Location = new System.Drawing.Point(148, 76);
+            this.IdentityNumberTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.IdentityNumberTextBox.MaxLength = 50;
+            this.IdentityNumberTextBox.Name = "IdentityNumberTextBox";
+            this.IdentityNumberTextBox.Size = new System.Drawing.Size(164, 20);
+            this.IdentityNumberTextBox.TabIndex = 25;
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(6, 78);
+            this.label33.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(138, 13);
+            this.label33.TabIndex = 24;
+            this.label33.Text = "Индификационный номер";
+            // 
             // AddEmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1213,7 +1211,6 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.TextBox PhoneNumberTextBox1;
         private System.Windows.Forms.TextBox IndexTextBox1;
         private System.Windows.Forms.TextBox ApartamentTextBox1;
         private System.Windows.Forms.TextBox HouseTextBox1;
@@ -1226,7 +1223,6 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox PhoneNumberTextBox2;
         private System.Windows.Forms.TextBox IndexTextBox2;
         private System.Windows.Forms.TextBox ApartamentTextBox2;
         private System.Windows.Forms.TextBox HouseTextBox2;
@@ -1248,14 +1244,8 @@
         private System.Windows.Forms.TextBox NumberTextBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.RadioButton ManRadioButton;
-        private System.Windows.Forms.RadioButton WomanRadioButton;
-        private System.Windows.Forms.DateTimePicker DateOfBirthdayDateTimePicker;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox LastNameTextBox;
         internal System.Windows.Forms.TextBox NameTextBox;
-        private System.Windows.Forms.TextBox SurnameTextBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
@@ -1266,5 +1256,15 @@
         internal System.Windows.Forms.TextBox CityTextBox2;
         internal System.Windows.Forms.TextBox StreetTextBox2;
         internal System.Windows.Forms.ComboBox CounrtyComboBox2;
+        private System.Windows.Forms.MaskedTextBox PhoneNumberTextBox1;
+        private System.Windows.Forms.MaskedTextBox PhoneNumberTextBox2;
+        internal System.Windows.Forms.Label label23;
+        internal System.Windows.Forms.RadioButton ManRadioButton;
+        internal System.Windows.Forms.RadioButton WomanRadioButton;
+        internal System.Windows.Forms.DateTimePicker DateOfBirthdayDateTimePicker;
+        internal System.Windows.Forms.TextBox LastNameTextBox;
+        internal System.Windows.Forms.TextBox SurnameTextBox;
+        internal System.Windows.Forms.TextBox IdentityNumberTextBox;
+        private System.Windows.Forms.Label label33;
     }
 }

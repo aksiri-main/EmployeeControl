@@ -149,8 +149,20 @@ namespace EmployeeControlWinForms
                         addEmployee.notify = notifyIcon1;
 
                         addEmployee.id = Convert.ToInt32(selectedRow.Cells["id"].Value);
+                        addEmployee.SurnameTextBox.Text = selectedRow.Cells["Фамилия"].Value.ToString();
                         addEmployee.NameTextBox.Text = selectedRow.Cells["Имя"].Value.ToString();
+                        addEmployee.LastNameTextBox.Text = selectedRow.Cells["Отчество"].Value.ToString();
+                        addEmployee.DateOfBirthdayDateTimePicker.Text = selectedRow.Cells["Дата рождения"].Value.ToString();
+                        if(selectedRow.Cells["Пол"].Value.ToString() == "М")
+                        {
+                            addEmployee.ManRadioButton.Checked = true;
+                        }
+                        else
+                        {
+                            addEmployee.WomanRadioButton.Checked = true;
+                        }
                         addEmployee.ShowDialog();
+                        сотрудникиToolStripMenuItem_Click(sender, e);
                         break;
 
                     case "Страны":
@@ -327,6 +339,123 @@ namespace EmployeeControlWinForms
                 columns
                 );
             AddButton2.Visible = false;
+        }
+
+        private void SearchTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (SearchTextBox.Text == "Поиск:")
+            {
+                SearchTextBox.Clear();
+            }
+        }
+
+        private void SearchTextBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (SearchTextBox.Text == "Поиск:")
+            {
+                SearchTextBox.Text = "";
+            }
+        }
+
+        private void SearchTextBox_MouseLeave(object sender, EventArgs e)
+        {
+            if (SearchTextBox.Text == "")
+            {
+                SearchTextBox.Text = "Поиск:";
+            }
+        }
+
+        private void SearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            dataGridView1.ClearSelection();
+            if (SearchTextBox.Text.Length > 0)
+            {
+                for (int i = 0; i < dataGridView1.RowCount; i++)
+                {
+                    dataGridView1.Rows[i].Selected = false;
+                    for (int j = 0; j < dataGridView1.ColumnCount; j++)
+                    {
+                        if (dataGridView1.Rows[i].Cells[j].Value != null)
+                        {
+                            if (dataGridView1.Rows[i].Cells[j].Value.ToString().ToLower().Contains(SearchTextBox.Text.ToLower()))
+                            {
+                                dataGridView1.Rows[i].Selected = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = (dataGridView1.SelectedRows[0]);
+                int id = Convert.ToInt32(selectedRow.Cells["Id"].Value);
+                switch (pageName)
+                {
+                    case "Сотрудники":
+                        using (SqlConnection connection = new SqlConnection(DatabaseSettings.connectionString))
+                        {
+                            connection.Open();
+                            SqlTransaction transaction = connection.BeginTransaction();
+                            try
+                            {
+                                AddRecords.DeletingRecordsFromTheDataBase(id, "DELETE FROM Reliatives WHERE Id_Employee = @KeyValue");
+                                AddRecords.DeletingRecordsFromTheDataBase(id, "DELETE FROM MilitaryRegistration WHERE Id = @KeyValue");
+                                AddRecords.DeletingRecordsFromTheDataBase(id, "DELETE FROM PlaceOfResidence WHERE Id = @KeyValue");
+                                AddRecords.DeletingRecordsFromTheDataBase(id, "DELETE FROM RegistrationAddress WHERE Id = @KeyValue");
+                                AddRecords.DeletingRecordsFromTheDataBase(id, "DELETE FROM Passport WHERE Id = @KeyValue");
+                                AddRecords.DeletingRecordsFromTheDataBase(id, "DELETE FROM Employees WHERE Id = @KeyValue");
+                                transaction.Commit();
+                            }
+                            catch (Exception ex)
+                            {
+                                transaction.Rollback();
+                                MessageBox.Show(ex.Message);
+                            }
+                        }
+                        AddRecords.DeletingRecordsFromTheDataBase(id, "DELETE FROM Employees WHERE Id = @KeyValue");
+                        сотрудникиToolStripMenuItem_Click(sender, e);
+                        break;
+
+                    case "Страны":
+                        AddRecords.DeletingRecordsFromTheDataBase(id, "DELETE FROM Countries WHERE Id = @KeyValue");
+                        страныToolStripMenuItem_Click(sender, e);
+                        break;
+
+                    case "Области":
+                        AddRecords.DeletingRecordsFromTheDataBase(id, "DELETE FROM Area WHERE Id = @KeyValue");
+                        областиToolStripMenuItem_Click(sender, e);
+                        break;
+
+                    case "Города":
+                        AddRecords.DeletingRecordsFromTheDataBase(id, "DELETE FROM Cities WHERE Id = @KeyValue");
+                        городаToolStripMenuItem_Click(sender, e);
+                        break;
+
+                    case "Улицы":
+                        AddRecords.DeletingRecordsFromTheDataBase(id, "DELETE FROM Streets WHERE Id = @KeyValue");
+                        улицыToolStripMenuItem_Click(sender, e);
+                        break;
+
+                    case "РОВД":
+                        AddRecords.DeletingRecordsFromTheDataBase(id, "DELETE FROM ROVD WHERE Id = @KeyValue");
+                        рОВДToolStripMenuItem_Click(sender, e);
+                        break;
+
+                    case "Военные комиссариаты":
+                        AddRecords.DeletingRecordsFromTheDataBase(id, "DELETE FROM Comissariat WHERE Id = @KeyValue");
+                        военныеКомисариатыToolStripMenuItem_Click(sender, e);
+                        break;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите запись для удаления", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }
