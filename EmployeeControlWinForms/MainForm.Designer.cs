@@ -46,13 +46,13 @@
             this.составСемьиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сотрудникиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.отпускаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.SearchTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.ExcelButton = new System.Windows.Forms.Button();
+            this.WordT2ExportButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.FilterLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.AddButton2 = new System.Windows.Forms.Button();
-            this.SearchTextBox = new System.Windows.Forms.ToolStripTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -104,12 +104,12 @@
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridView1.Location = new System.Drawing.Point(9, 64);
+            this.dataGridView1.Location = new System.Drawing.Point(9, 81);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(704, 233);
+            this.dataGridView1.Size = new System.Drawing.Size(704, 216);
             this.dataGridView1.TabIndex = 3;
             // 
             // menuStrip1
@@ -219,31 +219,47 @@
             this.отпускаToolStripMenuItem.Size = new System.Drawing.Size(67, 23);
             this.отпускаToolStripMenuItem.Text = "Отпуска";
             // 
-            // button4
+            // SearchTextBox
             // 
-            this.button4.Location = new System.Drawing.Point(4, 16);
-            this.button4.Margin = new System.Windows.Forms.Padding(2);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(86, 29);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "Excel";
-            this.button4.UseVisualStyleBackColor = true;
+            this.SearchTextBox.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.SearchTextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.SearchTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SearchTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.SearchTextBox.Name = "SearchTextBox";
+            this.SearchTextBox.Size = new System.Drawing.Size(150, 23);
+            this.SearchTextBox.Text = "Поиск:";
+            this.SearchTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SearchTextBox_KeyDown);
+            this.SearchTextBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SearchTextBox_MouseDown);
+            this.SearchTextBox.MouseLeave += new System.EventHandler(this.SearchTextBox_MouseLeave);
+            this.SearchTextBox.TextChanged += new System.EventHandler(this.SearchTextBox_TextChanged);
             // 
-            // button5
+            // ExcelButton
             // 
-            this.button5.Location = new System.Drawing.Point(95, 17);
-            this.button5.Margin = new System.Windows.Forms.Padding(2);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(160, 29);
-            this.button5.TabIndex = 6;
-            this.button5.Text = "Личная карточка работника";
-            this.button5.UseVisualStyleBackColor = true;
+            this.ExcelButton.Location = new System.Drawing.Point(4, 16);
+            this.ExcelButton.Margin = new System.Windows.Forms.Padding(2);
+            this.ExcelButton.Name = "ExcelButton";
+            this.ExcelButton.Size = new System.Drawing.Size(86, 29);
+            this.ExcelButton.TabIndex = 5;
+            this.ExcelButton.Text = "Excel";
+            this.ExcelButton.UseVisualStyleBackColor = true;
+            this.ExcelButton.Click += new System.EventHandler(this.ExcelButton_Click);
+            // 
+            // WordT2ExportButton
+            // 
+            this.WordT2ExportButton.Location = new System.Drawing.Point(95, 17);
+            this.WordT2ExportButton.Margin = new System.Windows.Forms.Padding(2);
+            this.WordT2ExportButton.Name = "WordT2ExportButton";
+            this.WordT2ExportButton.Size = new System.Drawing.Size(160, 29);
+            this.WordT2ExportButton.TabIndex = 6;
+            this.WordT2ExportButton.Text = "Личная карточка работника";
+            this.WordT2ExportButton.UseVisualStyleBackColor = true;
+            this.WordT2ExportButton.Click += new System.EventHandler(this.WordT2ExportButton_Click);
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupBox1.Controls.Add(this.button5);
-            this.groupBox1.Controls.Add(this.button4);
+            this.groupBox1.Controls.Add(this.WordT2ExportButton);
+            this.groupBox1.Controls.Add(this.ExcelButton);
             this.groupBox1.Location = new System.Drawing.Point(9, 311);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
@@ -253,13 +269,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Экспорт";
             // 
-            // flowLayoutPanel1
+            // FilterLayoutPanel
             // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(9, 25);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(704, 34);
-            this.flowLayoutPanel1.TabIndex = 8;
+            this.FilterLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.FilterLayoutPanel.Location = new System.Drawing.Point(9, 25);
+            this.FilterLayoutPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.FilterLayoutPanel.Name = "FilterLayoutPanel";
+            this.FilterLayoutPanel.Size = new System.Drawing.Size(704, 52);
+            this.FilterLayoutPanel.TabIndex = 8;
             // 
             // notifyIcon1
             // 
@@ -279,27 +297,13 @@
             this.AddButton2.Visible = false;
             this.AddButton2.Click += new System.EventHandler(this.AddButton2_Click);
             // 
-            // SearchTextBox
-            // 
-            this.SearchTextBox.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.SearchTextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.SearchTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SearchTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.SearchTextBox.Name = "SearchTextBox";
-            this.SearchTextBox.Size = new System.Drawing.Size(150, 23);
-            this.SearchTextBox.Text = "Поиск:";
-            this.SearchTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SearchTextBox_KeyDown);
-            this.SearchTextBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SearchTextBox_MouseDown);
-            this.SearchTextBox.MouseLeave += new System.EventHandler(this.SearchTextBox_MouseLeave);
-            this.SearchTextBox.TextChanged += new System.EventHandler(this.SearchTextBox_TextChanged);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(722, 366);
             this.Controls.Add(this.AddButton2);
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.FilterLayoutPanel);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.DeleteButton);
@@ -329,8 +333,8 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem словарьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сотрудникиToolStripMenuItem;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button ExcelButton;
+        private System.Windows.Forms.Button WordT2ExportButton;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ToolStripMenuItem местоЖительстваToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem городаToolStripMenuItem;
@@ -338,7 +342,7 @@
         private System.Windows.Forms.ToolStripMenuItem сотрудникиToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem составСемьиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem отпускаToolStripMenuItem;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel FilterLayoutPanel;
         private System.Windows.Forms.ToolStripMenuItem рОВДToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem военныеКомисариатыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem страныToolStripMenuItem;

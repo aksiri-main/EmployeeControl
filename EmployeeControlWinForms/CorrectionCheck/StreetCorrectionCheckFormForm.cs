@@ -54,6 +54,7 @@ namespace EmployeeControlWinForms.CorrectionCheck
                     employeeForm.StreetTextBox1.Text = selectedRow.Cells["Улица"].Value.ToString();
                 else
                     employeeForm.StreetTextBox2.Text = selectedRow.Cells["Улица"].Value.ToString();
+                
                 this.Close();
             }
             else

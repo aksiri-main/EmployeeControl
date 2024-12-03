@@ -1,5 +1,7 @@
 ﻿using EmployeeControlWinForms.AddForms;
+using EmployeeControlWinForms.AddForms.WordDocX;
 using EmployeeControlWinForms.DB;
+using EmployeeControlWinForms.Filter;
 using EmployeeControlWinForms.SimpleAddForms;
 using System;
 using System.Collections.Generic;
@@ -20,6 +22,7 @@ namespace EmployeeControlWinForms
         public MainForm()
         {
             InitializeComponent();
+            
         }
 
         private void LoadData(string query, string[] invisibleColumns)
@@ -51,6 +54,7 @@ namespace EmployeeControlWinForms
             pageName = page;
             this.Text = pageName;
             LoadData(query, invisibleColumns);
+            FillControlsInPanelFilter();
         }
 
         private void AddButton_Click(object sender, EventArgs e)
@@ -456,6 +460,223 @@ namespace EmployeeControlWinForms
             {
                 MessageBox.Show("Выберите запись для удаления", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void ExcelButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                EPPlus.ExcelExport.SimpleGridExport(dataGridView1, pageName);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка: {ex}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void WordT2ExportButton_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = (dataGridView1.SelectedRows[0]);
+                switch (pageName)
+                {
+                    case "Сотрудники":
+                        WordT2Export.WordExport(Convert.ToInt32(selectedRow.Cells["Id"].Value));
+                        break;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите запись для изменения", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        void AddComponentsToFilterPanel(Label label, ComboBox comboBox, int numberColumn)
+        {
+            label.Font = new Font(label.Font.FontFamily, 9);
+            comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            // Создайте источник данных на основе данных столбца
+            HashSet<string> dataSource = new HashSet<string>();
+            dataSource.Add("Не выбрано");
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                dataSource.Add(row.Cells[numberColumn].Value.ToString());
+            }
+
+            // Привяжите источник данных к ComboBox
+            comboBox.DataSource = new BindingSource(dataSource, null);
+            comboBox.SelectedIndexChanged += new EventHandler(FilterComboBox_SelectedIndexChanged);
+
+            FilterLayoutPanel.Controls.Add(label);
+            FilterLayoutPanel.Controls.Add(comboBox);
+
+            FilterClass.KeyComboBox_ValueDataGridColumnDictionary.Add(comboBox.Name, numberColumn);
+        }
+
+
+        public void FillControlsInPanelFilter()
+        {
+            FilterClass.KeyDateTimePicker_ValueDataGridColumnDictionary.Clear();
+            FilterClass.KeyDateTimePicker_ValueDataGridColumnDictionary.Clear();
+            FilterClass.KeyComboBox_ValueDataGridColumnDictionary.Clear();
+            FilterLayoutPanel.Controls.Clear();
+
+            Label surnameLabel = new Label();
+            surnameLabel.Text = "Фамилия";
+
+            ComboBox surnameComboBox = new ComboBox();
+            surnameComboBox.Name = "surnameComboBox"; // Установка имени ComboBox
+
+            Label nameLabel = new Label();
+            nameLabel.Text = "Имя";
+
+            ComboBox nameComboBox = new ComboBox();
+            nameComboBox.Name = "nameComboBox"; // Установка имени ComboBox
+
+            Label lastNameLabel = new Label();
+            lastNameLabel.Text = "Отчество";
+
+            ComboBox lastNameComboBox = new ComboBox();
+            lastNameComboBox.Name = "lastNameComboBox"; // Установка имени ComboBox
+
+            Label sexLabel = new Label();
+            sexLabel.Text = "Пол";
+
+            ComboBox sexComboBox = new ComboBox();
+            sexComboBox.Name = "sexComboBox"; // Установка имени ComboBox
+
+            Label dateOfBirthdayLabel = new Label();
+            dateOfBirthdayLabel.Text = "Дата рождения";
+
+            DateTimePicker dateTimePicker1 = new DateTimePicker();
+            dateTimePicker1.Name = "filterDateTimePicker1";
+
+            DateTimePicker dateTimePicker2 = new DateTimePicker();
+            dateTimePicker2.Name = "filterDateTimePicker2";
+
+            dateTimePicker1.Value = new DateTime(2000, 1, 1);
+            dateTimePicker2.Value = DateTime.Today;
+            dateTimePicker1.ValueChanged += new EventHandler(FilterDateTimePicker_ValueChanged);
+            dateTimePicker2.ValueChanged += new EventHandler(FilterDateTimePicker_ValueChanged);
+
+            Label countriesLabel = new Label();
+            countriesLabel.Text = "Страна";
+
+            ComboBox countriesComboBox = new ComboBox();
+            countriesComboBox.Name = "countriesComboBox"; // Установка имени ComboBox
+
+            Label areasLabel = new Label();
+            areasLabel.Text = "Область";
+
+            ComboBox areasComboBox = new ComboBox();
+            areasComboBox.Name = "areasComboBox"; // Установка имени ComboBox
+
+            Label citiesLabel = new Label();
+            citiesLabel.Text = "Город";
+
+            ComboBox citiesComboBox = new ComboBox();
+            citiesComboBox.Name = "citiesComboBox"; // Установка имени ComboBox
+
+            switch (pageName)
+            {
+                case "Сотрудники":
+                    {
+                        AddComponentsToFilterPanel(surnameLabel, surnameComboBox, 1);
+                        AddComponentsToFilterPanel(nameLabel, nameComboBox, 2);
+                        AddComponentsToFilterPanel(lastNameLabel, lastNameComboBox, 3);
+                        AddComponentsToFilterPanel(sexLabel, sexComboBox, 5);
+
+                        FilterClass.KeyDateTimePicker_ValueDataGridColumnDictionary.Add(dateTimePicker1.Name, 4);
+                        FilterClass.KeyDateTimePicker_ValueDataGridColumnDictionary.Add(dateTimePicker2.Name, 4);
+
+                        FilterLayoutPanel.Controls.Add(dateOfBirthdayLabel);
+                        FilterLayoutPanel.Controls.Add(dateTimePicker1);
+                        FilterLayoutPanel.Controls.Add(dateTimePicker2);
+                    }
+                    break;
+
+                case "Области":
+                    AddComponentsToFilterPanel(countriesLabel, countriesComboBox, 2);
+                    break;
+
+                case "Города":
+                    AddComponentsToFilterPanel(countriesLabel, countriesComboBox, 2);
+                    AddComponentsToFilterPanel(areasLabel, areasComboBox, 3);
+                    break;
+
+                case "Улицы":
+                    AddComponentsToFilterPanel(countriesLabel, countriesComboBox, 2);
+                    AddComponentsToFilterPanel(areasLabel, areasComboBox, 3);
+                    AddComponentsToFilterPanel(citiesLabel, citiesComboBox, 4);
+                    break;
+
+                case "РОВД":
+                    AddComponentsToFilterPanel(countriesLabel, countriesComboBox, 2);
+                    AddComponentsToFilterPanel(areasLabel, areasComboBox, 3);
+                    AddComponentsToFilterPanel(citiesLabel, citiesComboBox, 4);
+                    break;
+
+                case "Военные комиссариаты":
+                    AddComponentsToFilterPanel(countriesLabel, countriesComboBox, 2);
+                    AddComponentsToFilterPanel(areasLabel, areasComboBox, 3);
+                    AddComponentsToFilterPanel(citiesLabel, citiesComboBox, 4);
+                    break;
+            }
+        }
+
+        public void FilterComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FilterSelectedIndexChanged();
+        }
+
+        void FilterDateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            FilterSelectedIndexChanged();
+        }
+
+        void FilterSelectedIndexChanged()
+        {
+            string modifiteString = "";
+            string filterStroke = "";
+            foreach (Control control in FilterLayoutPanel.Controls)
+            {
+                if (control is ComboBox comboBox)
+                {
+                    FilterClass.KeyComboBox_ValueDataGridColumnDictionary.TryGetValue(comboBox.Name, out int numberDataGridColumn);
+                    if (comboBox.Text != "Не выбрано")
+                    {
+                        filterStroke += $"[{dataGridView1.Columns[numberDataGridColumn].Name}] = '{comboBox.Text}' AND ";
+
+                        modifiteString = filterStroke.Remove(filterStroke.Length - 4);
+                    }
+                }
+            }
+
+            if (pageName == "Сотрудники")
+            {
+                Control[] foundControls = this.Controls.Find("filterDateTimePicker1", true);
+                DateTimePicker dtp1 = foundControls[0] as DateTimePicker;
+                foundControls = this.Controls.Find("filterDateTimePicker2", true);
+                DateTimePicker dtp2 = foundControls[0] as DateTimePicker;
+
+                DateTime selectedDateOn = dtp1.Value.Date;
+                DateTime selectedDateTo = dtp2.Value.Date;
+
+                if (modifiteString != "")
+                {
+                    modifiteString += " AND ";
+                }
+                switch (pageName)
+                {
+                    case "Сотрудники":
+                        modifiteString += $"[Дата рождения] >= #{selectedDateOn.ToString("MM/dd/yyyy")}# AND [Дата рождения] <= #{selectedDateTo.ToString("MM/dd/yyyy")}#";
+                        break;
+                }
+            }
+
+            (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = modifiteString;
         }
     }
 }

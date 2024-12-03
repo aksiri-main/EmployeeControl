@@ -44,9 +44,16 @@ namespace EmployeeControlWinForms
             }
         }
 
+        void Validation()
+        {
+            DateOfBirthdayDateTimePicker.MaxDate = DateTime.Now.AddYears(-14);
+            DateOfBirthdayDateTimePicker.MinDate = DateTime.Now.AddYears(-100);
+        }
+
         private void AddEmployeeForm_Load(object sender, EventArgs e)
         {
-            if(AddButton.Text == "Изменить")
+            Validation();
+            if (AddButton.Text == "Изменить")
             {
                 string[] columns = { "Id" };
                 LoadData("SELECT Id, kinship AS [Степень родства]," +
@@ -157,85 +164,115 @@ namespace EmployeeControlWinForms
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            int id_employee;
-            string uniquenessQuery;
-            countriesDictionary.TryGetValue(CounrtyComboBox1.Text, out int id_country);
-            rovdDictionary.TryGetValue(ROVDTextBox.Text, out int id_rovd);
-            commissariatDictionary.TryGetValue(MilitaryCommissariatTextBox.Text, out int id_commissariat);
-            countriesDictionary.TryGetValue(CounrtyComboBox1.Text, out int id_country_for_registration_address);
-            countriesDictionary.TryGetValue(CounrtyComboBox2.Text, out int id_country_for_place_of_residence);
-            citiesDictionary.TryGetValue(CityTextBox1.Text, out int id_city_for_registration_address);
-            citiesDictionary.TryGetValue(CityTextBox2.Text, out int id_city_for_place_of_residence);
-            streetsDictionary.TryGetValue(StreetTextBox1.Text, out int id_street_for_registration_address);
-            streetsDictionary.TryGetValue(StreetTextBox2.Text, out int id_street_for_place_of_residence);
-            string[] strings = { NameTextBox.Text, SurnameTextBox.Text, LastNameTextBox.Text };
-            string queryEmployee;
-            string queryPassport;
-            string queryMilitary;
-            string queryRegistrationAddress;
-            string queryPlaceOfResidence;
-
-            if (AddButton.Text != "Изменить")
+            if(ROVDTextBox.Text == "")
             {
-                queryEmployee = "INSERT INTO [Employees] (name, surname, lastName, dateOfBirthday, sex) VALUES (@value1, @value2, @value3, @value4, @value5)";
-                queryPassport = "INSERT INTO [Passport] (Id, Id_ROVD, serial, number, fromDate, toDate, identityNumber) VALUES (@value1, @value2, @value3, @value4, @value5, @value6, @value7)";
-                queryMilitary = "INSERT INTO [MilitaryRegistration] (Id, Id_Comissariat, stockCategory, militaryRank, сomposition, codeVUS, suitabilityCategory, militaryAccountingBool, militaryAccounting, markAccounting)" +
-                                " VALUES (@value1, @value2, @value3, @value4, @value5, @value6, @value7, @value8, @value9, @value10)";
-                queryRegistrationAddress = "INSERT INTO [RegistrationAddress] (Id, Id_Country, Id_City, Id_Street, mailIndex, house, apartament, phoneNumber)" +
-                    " VALUES (@value1, @value2, @value3, @value4, @value5, @value6, @value7, @value8)";
-                queryPlaceOfResidence = "INSERT INTO [PlaceOfResidence] (Id,Id_Country, Id_City, Id_Street, mailIndex, house, apartament, phoneNumber)" +
-                    " VALUES (@value1, @value2, @value3, @value4, @value5, @value6, @value7, @value8)";
-
-                uniquenessQuery = "SELECT COUNT(*) FROM Employees WHERE (name = @value1 AND surname = @value2 AND lastName = @value3)";
+                ROVDTextBox.Focus();
+            }
+            else if(CounrtyComboBox1.Text == "")
+            {
+                CounrtyComboBox1.Focus();
+            }
+            else if(CityTextBox1.Text == "")
+            {
+                CityTextBox1.Focus();
+            }
+            else if(StreetTextBox1.Text == "")
+            {
+                StreetTextBox1.Focus();
+            }
+            else if(CounrtyComboBox2.Text == "")
+            {
+                CounrtyComboBox2.Focus();
+            }
+            else if(CityTextBox2.Text == "")
+            {
+                CityTextBox2.Focus();
+            }
+            else if(MilitaryCommissariatTextBox.Text == "")
+            {
+                MilitaryCommissariatTextBox.Focus();
             }
             else
             {
-                queryEmployee = "UPDATE Employees SET name=@value1, surname=@value2, lastName=@value3, dateOfBirthday=@value4, sex=@value5 WHERE Id=@id";
-                queryPassport = "UPDATE Passport SET Id_ROVD=@value2, serial=@value3, number=@value4, fromDate=@value5, toDate=@value6, identityNumber=@value7 WHERE Id=@id";
-                queryMilitary = "UPDATE MilitaryRegistration SET Id_Comissariat=@value2, stockCategory=@value3, militaryRank=@value4," +
-                    " сomposition=@value5, codeVUS=@value6, suitabilityCategory=@value7, militaryAccountingBool=@value8, militaryAccounting=@value9, markAccounting=@value10 WHERE Id=@id";
-                queryRegistrationAddress = "UPDATE RegistrationAddress SET Id_Country=@value2, Id_City=@value3, Id_Street=@value4," +
-                    " mailIndex=@value5, house=@value6, apartament=@value7, phoneNumber=@value8";
-                queryPlaceOfResidence = "UPDATE PlaceOfResidence SET Id_Country=@value2, Id_City=@value3, Id_Street=@value4," +
-                    " mailIndex=@value5, house=@value6, apartament=@value7, phoneNumber=@value8";
+                int id_employee;
+                string uniquenessQuery;
+                countriesDictionary.TryGetValue(CounrtyComboBox1.Text, out int id_country);
+                rovdDictionary.TryGetValue(ROVDTextBox.Text, out int id_rovd);
+                commissariatDictionary.TryGetValue(MilitaryCommissariatTextBox.Text, out int id_commissariat);
+                countriesDictionary.TryGetValue(CounrtyComboBox1.Text, out int id_country_for_registration_address);
+                countriesDictionary.TryGetValue(CounrtyComboBox2.Text, out int id_country_for_place_of_residence);
+                citiesDictionary.TryGetValue(CityTextBox1.Text, out int id_city_for_registration_address);
+                citiesDictionary.TryGetValue(CityTextBox2.Text, out int id_city_for_place_of_residence);
+                streetsDictionary.TryGetValue(StreetTextBox1.Text, out int id_street_for_registration_address);
+                streetsDictionary.TryGetValue(StreetTextBox2.Text, out int id_street_for_place_of_residence);
+                string[] strings = { NameTextBox.Text, SurnameTextBox.Text, LastNameTextBox.Text };
+                string queryEmployee;
+                string queryPassport;
+                string queryMilitary;
+                string queryRegistrationAddress;
+                string queryPlaceOfResidence;
 
-                uniquenessQuery = $"SELECT COUNT(*) FROM Employees WHERE (name = @value1 AND surname = @value2 AND lastName = @value3) AND id != '{id}'";
-            }
-            int result = AddRecords.UniquenessCheck(
-                uniquenessQuery,
-                AddRecords.PutStringValuesIntoArray(strings)
-                );
-
-            if (result == 0)
-            {
-                if (NameTextBox.Text == "")
+                if (AddButton.Text != "Изменить")
                 {
-                    AddRecords.NotifyIconSettings(notify, ToolTipIcon.Warning, "Внимание!", "Необходимо заполнить наименование!", 3);
-                    return;
+                    queryEmployee = "INSERT INTO [Employees] (name, surname, lastName, dateOfBirthday, sex) VALUES (@value1, @value2, @value3, @value4, @value5)";
+                    queryPassport = "INSERT INTO [Passport] (Id, Id_ROVD, serial, number, fromDate, toDate, identityNumber) VALUES (@value1, @value2, @value3, @value4, @value5, @value6, @value7)";
+                    queryMilitary = "INSERT INTO [MilitaryRegistration] (Id, Id_Comissariat, stockCategory, militaryRank, сomposition, codeVUS, suitabilityCategory, militaryAccountingBool, militaryAccounting, markAccounting)" +
+                                    " VALUES (@value1, @value2, @value3, @value4, @value5, @value6, @value7, @value8, @value9, @value10)";
+                    queryRegistrationAddress = "INSERT INTO [RegistrationAddress] (Id, Id_Country, Id_City, Id_Street, mailIndex, house, apartament, phoneNumber)" +
+                        " VALUES (@value1, @value2, @value3, @value4, @value5, @value6, @value7, @value8)";
+                    queryPlaceOfResidence = "INSERT INTO [PlaceOfResidence] (Id,Id_Country, Id_City, Id_Street, mailIndex, house, apartament, phoneNumber)" +
+                        " VALUES (@value1, @value2, @value3, @value4, @value5, @value6, @value7, @value8)";
+
+                    uniquenessQuery = "SELECT COUNT(*) FROM Employees WHERE (name = @value1 AND surname = @value2 AND lastName = @value3)";
                 }
+                else
+                {
+                    queryEmployee = "UPDATE Employees SET name=@value1, surname=@value2, lastName=@value3, dateOfBirthday=@value4, sex=@value5 WHERE Id=@id";
+                    queryPassport = "UPDATE Passport SET Id_ROVD=@value2, serial=@value3, number=@value4, fromDate=@value5, toDate=@value6, identityNumber=@value7 WHERE Id=@id";
+                    queryMilitary = "UPDATE MilitaryRegistration SET Id_Comissariat=@value2, stockCategory=@value3, militaryRank=@value4," +
+                        " сomposition=@value5, codeVUS=@value6, suitabilityCategory=@value7, militaryAccountingBool=@value8, militaryAccounting=@value9, markAccounting=@value10 WHERE Id=@id";
+                    queryRegistrationAddress = "UPDATE RegistrationAddress SET Id_Country=@value2, Id_City=@value3, Id_Street=@value4," +
+                        " mailIndex=@value5, house=@value6, apartament=@value7, phoneNumber=@value8";
+                    queryPlaceOfResidence = "UPDATE PlaceOfResidence SET Id_Country=@value2, Id_City=@value3, Id_Street=@value4," +
+                        " mailIndex=@value5, house=@value6, apartament=@value7, phoneNumber=@value8";
 
-                string[] valuesEmployee = { NameTextBox.Text, SurnameTextBox.Text, LastNameTextBox.Text, DateOfBirthdayDateTimePicker.Text, RBCheck() };
-
-                AddRecords.AddRecordsMethod(
-                    queryEmployee,
-                    AddRecords.PutStringValuesIntoArray(valuesEmployee),
-                    AddButton.Text,
-                    notify,
-                    id
+                    uniquenessQuery = $"SELECT COUNT(*) FROM Employees WHERE (name = @value1 AND surname = @value2 AND lastName = @value3) AND id != '{id}'";
+                }
+                int result = AddRecords.UniquenessCheck(
+                    uniquenessQuery,
+                    AddRecords.PutStringValuesIntoArray(strings)
                     );
 
-                id_employee = AddRecords.CorrectionCheck(
-                    "SELECT Id FROM Employees WHERE" +
-                    " (name=@value1 AND surname=@value2 AND lastName=@value3 AND dateOfBirthday=@value4 AND sex=@value5)",
-                    AddRecords.PutStringValuesIntoArray(valuesEmployee)
-                    );
+                if (result == 0)
+                {
+                    if (NameTextBox.Text == "")
+                    {
+                        AddRecords.NotifyIconSettings(notify, ToolTipIcon.Warning, "Внимание!", "Необходимо заполнить наименование!", 3);
+                        return;
+                    }
 
-                string[] valuesPassport = { id_employee.ToString(), id_rovd.ToString(), SerialTextBox.Text, NumberTextBox.Text, FromDateTimePicker.Text, ToDateTimePicker.Text, IdentityNumberTextBox.Text };
-                string[] valuesMilitary = { id_employee.ToString(), id_commissariat.ToString(), StockCategoryTextBox.Text, MilitaryRankTextBox.Text,
+                    string[] valuesEmployee = { NameTextBox.Text, SurnameTextBox.Text, LastNameTextBox.Text, DateOfBirthdayDateTimePicker.Text, RBCheck() };
+
+                    AddRecords.AddRecordsMethod(
+                        queryEmployee,
+                        AddRecords.PutStringValuesIntoArray(valuesEmployee),
+                        AddButton.Text,
+                        notify,
+                        id
+                        );
+
+                    id_employee = AddRecords.CorrectionCheck(
+                        "SELECT Id FROM Employees WHERE" +
+                        " (name=@value1 AND surname=@value2 AND lastName=@value3 AND dateOfBirthday=@value4 AND sex=@value5)",
+                        AddRecords.PutStringValuesIntoArray(valuesEmployee)
+                        );
+
+                    string[] valuesPassport = { id_employee.ToString(), id_rovd.ToString(), SerialTextBox.Text, NumberTextBox.Text, FromDateTimePicker.Text, ToDateTimePicker.Text, IdentityNumberTextBox.Text };
+                    string[] valuesMilitary = { id_employee.ToString(), id_commissariat.ToString(), StockCategoryTextBox.Text, MilitaryRankTextBox.Text,
                     CompositionTextBox.Text, CodeVUSTextBox.Text, SuitabilityCategoryTextBox.Text,
                     GeneralRadioButton.Checked.ToString(), MilitaryAccountingTextBox.Text, MarkAccountingTextBox.Text
                 };
-                string[] valuesRegistrationAddress = {
+                    string[] valuesRegistrationAddress = {
                             id_employee.ToString(),
                             id_country_for_registration_address.ToString(),
                             id_city_for_registration_address.ToString(),
@@ -245,7 +282,7 @@ namespace EmployeeControlWinForms
                             ApartamentTextBox1.Text,
                             PhoneNumberTextBox1.Text
                         };
-                string[] valuesPlaceOfResidence = {
+                    string[] valuesPlaceOfResidence = {
                             id_employee.ToString(),
                             id_country_for_place_of_residence.ToString(),
                             id_city_for_place_of_residence.ToString(),
@@ -256,86 +293,89 @@ namespace EmployeeControlWinForms
                             PhoneNumberTextBox2.Text
                         };
 
-                AddRecords.AddRecordsMethod(
-                    queryPassport,
-                    AddRecords.PutStringValuesIntoArray(valuesPassport),
-                    id
-                    );
+                    AddRecords.AddRecordsMethod(
+                        queryPassport,
+                        AddRecords.PutStringValuesIntoArray(valuesPassport),
+                        id
+                        );
 
-                AddRecords.AddRecordsMethod(
-                    queryMilitary,
-                    AddRecords.PutStringValuesIntoArray(valuesMilitary),
-                    id
-                    );
+                    AddRecords.AddRecordsMethod(
+                        queryMilitary,
+                        AddRecords.PutStringValuesIntoArray(valuesMilitary),
+                        id
+                        );
 
-                AddRecords.AddRecordsMethod(
-                    queryRegistrationAddress,
-                    AddRecords.PutStringValuesIntoArray(valuesRegistrationAddress),
-                    id
-                    );
+                    AddRecords.AddRecordsMethod(
+                        queryRegistrationAddress,
+                        AddRecords.PutStringValuesIntoArray(valuesRegistrationAddress),
+                        id
+                        );
 
-                AddRecords.AddRecordsMethod(
-                    queryPlaceOfResidence,
-                    AddRecords.PutStringValuesIntoArray(valuesPlaceOfResidence),
-                    id
-                    );
-                
-                using (SqlConnection connection = new SqlConnection(DatabaseSettings.connectionString))
-                {
-                    connection.Open();
-                    SqlTransaction transaction = connection.BeginTransaction();
-                    try
+                    AddRecords.AddRecordsMethod(
+                        queryPlaceOfResidence,
+                        AddRecords.PutStringValuesIntoArray(valuesPlaceOfResidence),
+                        id
+                        );
+
+                    using (SqlConnection connection = new SqlConnection(DatabaseSettings.connectionString))
                     {
-                        if (AddButton.Text == "Изменить")
+                        connection.Open();
+                        SqlTransaction transaction = connection.BeginTransaction();
+                        try
                         {
-                            AddRecords.DeletingRecordsFromTheDataBase(id, "DELETE FROM Reliatives WHERE Id_Employee = @KeyValue", connection, transaction);
-                        }
-
-                        foreach (DataGridViewRow row in dataGridView1.Rows)
-                        {
-                            int count = 0;
-                            string line = "";
-                            Dictionary<string, string> cells = new Dictionary<string, string>();
-
-                            if (!row.IsNewRow)
+                            if (AddButton.Text == "Изменить")
                             {
-                                cells.Add($"@value1", id_employee.ToString());
-                                foreach (DataGridViewCell cell in row.Cells)
-                                {
-                                    if (cell.Value != null)
-                                    {
-                                        count++;
-                                        if(count != 1)
-                                            cells.Add($"@value{count}", cell.Value.ToString());
-                                    }
-                                }
-                                
-
-                                AddRecords.AddRecordsMethod(
-                                    "INSERT INTO Reliatives (Id_Employee, kinship, name, surname, lastName, dateOfBirthday) VALUES (@value1, @value2, @value3, @value4, @value5, @value6)",
-                                    cells,
-                                    id,
-                                    connection,
-                                    transaction
-                                );
-
+                                AddRecords.DeletingRecordsFromTheDataBase(id, "DELETE FROM Reliatives WHERE Id_Employee = @KeyValue", connection, transaction);
                             }
 
+                            foreach (DataGridViewRow row in dataGridView1.Rows)
+                            {
+                                int count = 0;
+                                string line = "";
+                                Dictionary<string, string> cells = new Dictionary<string, string>();
+
+                                if (!row.IsNewRow)
+                                {
+                                    cells.Add($"@value1", id_employee.ToString());
+                                    foreach (DataGridViewCell cell in row.Cells)
+                                    {
+                                        if (cell.Value != null)
+                                        {
+                                            count++;
+                                            if (count != 1)
+                                                cells.Add($"@value{count}", cell.Value.ToString());
+                                        }
+                                    }
+
+
+                                    AddRecords.AddRecordsMethod(
+                                        "INSERT INTO Reliatives (Id_Employee, kinship, name, surname, lastName, dateOfBirthday) VALUES (@value1, @value2, @value3, @value4, @value5, @value6)",
+                                        cells,
+                                        id,
+                                        connection,
+                                        transaction
+                                    );
+
+                                }
+
+                            }
+                            transaction.Commit();
                         }
-                        transaction.Commit();
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                            transaction.Rollback();
+                        }
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                        transaction.Rollback();
-                    }
+                    this.Close();
+                }
             }
-                this.Close();
-            }
+            
         }
 
         private void StreetTextBox1_Leave(object sender, EventArgs e)
         {
+            string text = StreetTextBox1.Text;
             citiesDictionary.TryGetValue(CityTextBox1.Text, out var id_city);
             string[] strings = { StreetTextBox1.Text };
             int result = AddRecords.CorrectionCheck(
@@ -350,11 +390,18 @@ namespace EmployeeControlWinForms
                 streetCorrection.id_city = id_city;
                 streetCorrection.location = 1;
                 streetCorrection.ShowDialog(this);
+                if (text == StreetTextBox1.Text)
+                {
+                    StreetTextBox1.Text = "";
+                    StreetTextBox1.Focus();
+                }
+                    
             }
         }
 
         private void CityTextBox1_Leave(object sender, EventArgs e)
         {
+            string text = CityTextBox1.Text;
             countriesDictionary.TryGetValue(CounrtyComboBox1.Text, out var id_country);
             string[] strings = { CityTextBox1.Text };
             int result = AddRecords.CorrectionCheck(
@@ -370,11 +417,17 @@ namespace EmployeeControlWinForms
                 cityCorrection.id_country = id_country;
                 cityCorrection.location = 1;
                 cityCorrection.ShowDialog(this);
+                if (text == StreetTextBox1.Text)
+                {
+                    CityTextBox1.Text = "";
+                    CityTextBox1.Focus();
+                }
             }
         }
 
         private void ROVDTextBox_Leave(object sender, EventArgs e)
         {
+            string text = ROVDTextBox.Text;
             string[] strings = { ROVDTextBox.Text };
             int result = AddRecords.CorrectionCheck(
                 "SELECT COUNT(*) FROM ROVD" +
@@ -387,11 +440,17 @@ namespace EmployeeControlWinForms
 
                 rovdCorrection.notify = notify;
                 rovdCorrection.ShowDialog(this);
+                if (text == ROVDTextBox.Text)
+                {
+                    ROVDTextBox.Text = "";
+                    ROVDTextBox.Focus();
+                }
             }
         }
 
         private void MilitaryCommissariatTextBox_Leave(object sender, EventArgs e)
         {
+            string text = "";
             string[] strings = { MilitaryCommissariatTextBox.Text };
             int result = AddRecords.CorrectionCheck(
                 "SELECT COUNT(*) FROM Comissariat" +
@@ -404,11 +463,17 @@ namespace EmployeeControlWinForms
 
                 commissariatCorrection.notify = notify;
                 commissariatCorrection.ShowDialog(this);
+                if (text == MilitaryCommissariatTextBox.Text)
+                {
+                    MilitaryCommissariatTextBox.Text = "";
+                    MilitaryCommissariatTextBox.Focus();
+                }
             }
         }
 
         private void CityTextBox2_Leave(object sender, EventArgs e)
         {
+            string text = "";
             countriesDictionary.TryGetValue(CounrtyComboBox2.Text, out var id_country);
             string[] strings = { CityTextBox2.Text };
             int result = AddRecords.CorrectionCheck(
@@ -424,11 +489,17 @@ namespace EmployeeControlWinForms
                 cityCorrection.id_country = id_country;
                 cityCorrection.location = 2;
                 cityCorrection.ShowDialog(this);
+                if (text == CityTextBox2.Text)
+                {
+                    CityTextBox2.Text = "";
+                    CityTextBox2.Focus();
+                }
             }
         }
 
         private void StreetTextBox2_Leave(object sender, EventArgs e)
         {
+            string text = "";
             citiesDictionary.TryGetValue(CityTextBox2.Text, out var id_city);
             string[] strings = { StreetTextBox2.Text };
             int result = AddRecords.CorrectionCheck(
@@ -443,6 +514,11 @@ namespace EmployeeControlWinForms
                 streetCorrection.id_city = id_city;
                 streetCorrection.location = 2;
                 streetCorrection.ShowDialog(this);
+                if (text == StreetTextBox2.Text)
+                {
+                    StreetTextBox2.Text = "";
+                    StreetTextBox2.Focus();
+                }
             }
         }
 
@@ -465,6 +541,39 @@ namespace EmployeeControlWinForms
                     line = string.Join("", cells);
                     MessageBox.Show(line);
                 }
+            }
+        }
+
+        private void SerialTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+        }
+
+        private void IdentityNumberTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+        private void IndexTextBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ' ||
+               !char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void IdentityNumberTextBox_TextChanged(object sender, EventArgs e)
+        {
+            IdentityNumberTextBox.Text = IdentityNumberTextBox.Text.ToUpper();
+            IdentityNumberTextBox.SelectionStart = IdentityNumberTextBox.Text.Length; // Устанавливаем курсор в конец
+        }
+
+        private void NumberTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ' ||
+               !char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
     }

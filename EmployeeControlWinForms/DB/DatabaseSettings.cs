@@ -10,6 +10,7 @@ namespace EmployeeControlWinForms.DB
     {
         internal static string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB; " +
                                   "AttachDbFileName=|DataDirectory|\\DB\\Database2.mdf; " +
+                                  "Read Only=False; " +
                                   "Integrated Security=True;";
 
         internal static string employeeTable = "SELECT Id, surname AS [Фамилия], name AS [Имя], lastName AS [Отчество], dateOfBirthday AS [Дата рождения], sex AS [Пол] FROM Employees";

@@ -34,6 +34,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.PhoneNumberTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.IndexTextBox1 = new System.Windows.Forms.TextBox();
             this.ApartamentTextBox1 = new System.Windows.Forms.TextBox();
@@ -48,6 +49,7 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.PhoneNumberTextBox2 = new System.Windows.Forms.MaskedTextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.IndexTextBox2 = new System.Windows.Forms.TextBox();
             this.ApartamentTextBox2 = new System.Windows.Forms.TextBox();
@@ -62,6 +64,9 @@
             this.label21 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.SerialTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.IdentityNumberTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.label33 = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.FromDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.label18 = new System.Windows.Forms.Label();
@@ -69,7 +74,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.ROVDTextBox = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.SerialTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.NumberTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -106,10 +110,6 @@
             this.label24 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.PhoneNumberTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.PhoneNumberTextBox2 = new System.Windows.Forms.MaskedTextBox();
-            this.IdentityNumberTextBox = new System.Windows.Forms.TextBox();
-            this.label33 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -234,6 +234,16 @@
             this.tabPage1.Text = "Адрес прописки";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // PhoneNumberTextBox1
+            // 
+            this.PhoneNumberTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PhoneNumberTextBox1.Location = new System.Drawing.Point(114, 133);
+            this.PhoneNumberTextBox1.Mask = "(99) 000-0000";
+            this.PhoneNumberTextBox1.Name = "PhoneNumberTextBox1";
+            this.PhoneNumberTextBox1.Size = new System.Drawing.Size(189, 20);
+            this.PhoneNumberTextBox1.TabIndex = 35;
+            // 
             // label22
             // 
             this.label22.AutoSize = true;
@@ -254,6 +264,7 @@
             this.IndexTextBox1.Name = "IndexTextBox1";
             this.IndexTextBox1.Size = new System.Drawing.Size(243, 20);
             this.IndexTextBox1.TabIndex = 31;
+            this.IndexTextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IndexTextBox1_KeyPress);
             // 
             // ApartamentTextBox1
             // 
@@ -392,6 +403,16 @@
             this.tabPage2.Text = "Место жительства";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // PhoneNumberTextBox2
+            // 
+            this.PhoneNumberTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PhoneNumberTextBox2.Location = new System.Drawing.Point(119, 134);
+            this.PhoneNumberTextBox2.Mask = "(99) 000-0000";
+            this.PhoneNumberTextBox2.Name = "PhoneNumberTextBox2";
+            this.PhoneNumberTextBox2.Size = new System.Drawing.Size(189, 20);
+            this.PhoneNumberTextBox2.TabIndex = 49;
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -529,12 +550,12 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.SerialTextBox);
             this.groupBox2.Controls.Add(this.IdentityNumberTextBox);
             this.groupBox2.Controls.Add(this.label33);
             this.groupBox2.Controls.Add(this.splitContainer2);
             this.groupBox2.Controls.Add(this.ROVDTextBox);
             this.groupBox2.Controls.Add(this.label19);
-            this.groupBox2.Controls.Add(this.SerialTextBox);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.NumberTextBox);
             this.groupBox2.Controls.Add(this.label5);
@@ -546,6 +567,38 @@
             this.groupBox2.TabIndex = 24;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Паспорт";
+            // 
+            // SerialTextBox
+            // 
+            this.SerialTextBox.Location = new System.Drawing.Point(49, 23);
+            this.SerialTextBox.Mask = "LL";
+            this.SerialTextBox.Name = "SerialTextBox";
+            this.SerialTextBox.PromptChar = 'C';
+            this.SerialTextBox.Size = new System.Drawing.Size(26, 20);
+            this.SerialTextBox.TabIndex = 27;
+            this.SerialTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SerialTextBox_KeyPress);
+            // 
+            // IdentityNumberTextBox
+            // 
+            this.IdentityNumberTextBox.BeepOnError = true;
+            this.IdentityNumberTextBox.Location = new System.Drawing.Point(148, 76);
+            this.IdentityNumberTextBox.Mask = "0000000L000LL0";
+            this.IdentityNumberTextBox.Name = "IdentityNumberTextBox";
+            this.IdentityNumberTextBox.PromptChar = '~';
+            this.IdentityNumberTextBox.Size = new System.Drawing.Size(164, 20);
+            this.IdentityNumberTextBox.TabIndex = 26;
+            this.IdentityNumberTextBox.TextChanged += new System.EventHandler(this.IdentityNumberTextBox_TextChanged);
+            this.IdentityNumberTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IdentityNumberTextBox_KeyPress);
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(6, 78);
+            this.label33.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(138, 13);
+            this.label33.TabIndex = 24;
+            this.label33.Text = "Индификационный номер";
             // 
             // splitContainer2
             // 
@@ -634,15 +687,6 @@
             this.label19.TabIndex = 22;
             this.label19.Text = "Выдан";
             // 
-            // SerialTextBox
-            // 
-            this.SerialTextBox.Location = new System.Drawing.Point(50, 23);
-            this.SerialTextBox.Margin = new System.Windows.Forms.Padding(2);
-            this.SerialTextBox.MaxLength = 2;
-            this.SerialTextBox.Name = "SerialTextBox";
-            this.SerialTextBox.Size = new System.Drawing.Size(26, 20);
-            this.SerialTextBox.TabIndex = 9;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -659,10 +703,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NumberTextBox.Location = new System.Drawing.Point(123, 23);
             this.NumberTextBox.Margin = new System.Windows.Forms.Padding(2);
-            this.NumberTextBox.MaxLength = 30;
+            this.NumberTextBox.MaxLength = 6;
             this.NumberTextBox.Name = "NumberTextBox";
             this.NumberTextBox.Size = new System.Drawing.Size(189, 20);
             this.NumberTextBox.TabIndex = 8;
+            this.NumberTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberTextBox_KeyPress);
             // 
             // label5
             // 
@@ -1102,47 +1147,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(304, 119);
             this.dataGridView1.TabIndex = 0;
             // 
-            // PhoneNumberTextBox1
-            // 
-            this.PhoneNumberTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PhoneNumberTextBox1.Location = new System.Drawing.Point(114, 133);
-            this.PhoneNumberTextBox1.Mask = "(99) 000-0000";
-            this.PhoneNumberTextBox1.Name = "PhoneNumberTextBox1";
-            this.PhoneNumberTextBox1.Size = new System.Drawing.Size(189, 20);
-            this.PhoneNumberTextBox1.TabIndex = 35;
-            // 
-            // PhoneNumberTextBox2
-            // 
-            this.PhoneNumberTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PhoneNumberTextBox2.Location = new System.Drawing.Point(119, 134);
-            this.PhoneNumberTextBox2.Mask = "(99) 000-0000";
-            this.PhoneNumberTextBox2.Name = "PhoneNumberTextBox2";
-            this.PhoneNumberTextBox2.Size = new System.Drawing.Size(189, 20);
-            this.PhoneNumberTextBox2.TabIndex = 49;
-            // 
-            // IdentityNumberTextBox
-            // 
-            this.IdentityNumberTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.IdentityNumberTextBox.Location = new System.Drawing.Point(148, 76);
-            this.IdentityNumberTextBox.Margin = new System.Windows.Forms.Padding(2);
-            this.IdentityNumberTextBox.MaxLength = 50;
-            this.IdentityNumberTextBox.Name = "IdentityNumberTextBox";
-            this.IdentityNumberTextBox.Size = new System.Drawing.Size(164, 20);
-            this.IdentityNumberTextBox.TabIndex = 25;
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(6, 78);
-            this.label33.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(138, 13);
-            this.label33.TabIndex = 24;
-            this.label33.Text = "Индификационный номер";
-            // 
             // AddEmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1239,7 +1243,6 @@
         private System.Windows.Forms.DateTimePicker ToDateTimePicker;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox SerialTextBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox NumberTextBox;
         private System.Windows.Forms.Label label5;
@@ -1264,7 +1267,8 @@
         internal System.Windows.Forms.DateTimePicker DateOfBirthdayDateTimePicker;
         internal System.Windows.Forms.TextBox LastNameTextBox;
         internal System.Windows.Forms.TextBox SurnameTextBox;
-        internal System.Windows.Forms.TextBox IdentityNumberTextBox;
         private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.MaskedTextBox IdentityNumberTextBox;
+        private System.Windows.Forms.MaskedTextBox SerialTextBox;
     }
 }

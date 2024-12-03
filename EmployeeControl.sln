@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeControl", "Employee
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeControlWinForms", "EmployeeControlWinForms\EmployeeControlWinForms.csproj", "{5E139A02-1D48-4A50-931B-2A87D2869248}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "EmployeeControlSetup", "EmployeeControlSetup\EmployeeControlSetup.vdproj", "{58609A52-3BB5-45A4-9E8B-4BDA101AB321}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,8 @@ Global
 		{5E139A02-1D48-4A50-931B-2A87D2869248}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E139A02-1D48-4A50-931B-2A87D2869248}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E139A02-1D48-4A50-931B-2A87D2869248}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58609A52-3BB5-45A4-9E8B-4BDA101AB321}.Debug|Any CPU.ActiveCfg = Debug
+		{58609A52-3BB5-45A4-9E8B-4BDA101AB321}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
